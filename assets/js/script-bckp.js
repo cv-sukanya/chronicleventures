@@ -1,12 +1,10 @@
 
 
 // LENIS SMOOTH SCROLL
-// const lenis = new Lenis({
-//   smooth: true
-// });
 const lenis = new Lenis({
-  smoothWheel: true
+  smooth: true
 });
+
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
@@ -136,94 +134,18 @@ if (closeBtn) {
 
 // About section
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  const aboutTl = gsap.timeline({
+gsap.fromTo(".big-arrow",
+  {
+    y: "40%" // start from bottom
+  },
+  {
+    y: "-10%", // go up till near logo
+    ease: "none",
     scrollTrigger: {
       trigger: ".about",
       start: "top bottom",
-      end: "bottom top",
+      end: "top top",
       scrub: true
     }
-  });
-
-  // CURVE RISE
-  gsap.fromTo(".curve", {
-  scaleY: 0.6,
-}, {
-  scaleY: 1.2,
-  transformOrigin: "bottom center",
-  scrollTrigger: {
-    trigger: ".about",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: true
   }
-});
-
-  // GLOW EXPAND
-  aboutTl.fromTo(".curve-glow",
-    {
-      scale: 0.8,
-      opacity: 0.5
-    },
-    {
-      scale: 1.3,
-      opacity: 1,
-      ease: "none"
-    },
-    0
-  );
-
-  // TEXT REVEAL
-  aboutTl.fromTo(".about-text",
-    {
-      y: 50,
-      opacity: 1
-    },
-    {
-      y: 0,
-      opacity: 1,
-      ease: "power2.out"
-    },
-    0.2
-  );
-
-});
-
-
-// services
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.utils.toArray(".stone").forEach((stone, i) => {
-    gsap.to(stone, {
-      y: "random(-40, 40)",
-      x: "random(-20, 20)",
-      rotation: "random(-15, 15)",
-      duration: gsap.utils.random(3, 6),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: i * 0.2
-    });
-  });
-});
-
-gsap.utils.toArray(".service-card").forEach((card, i) => {
-
-  const isEven = i % 2 === 0;
-
-  gsap.from(card, {
-    x: isEven ? -150 : 150,  // 👈 alternate direction
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out",
-
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%",
-      end: "top 60%",
-      scrub: 1
-    }
-  });
-
-});
+);

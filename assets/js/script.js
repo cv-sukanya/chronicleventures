@@ -131,6 +131,12 @@ const closeBtn = document.querySelector(".close-btn");
 if (closeBtn) {
   closeBtn.addEventListener("click", closeMenu);
 }
+// CLOSE MENU ON LINK CLICK
+document.querySelectorAll(".side-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    closeMenu();
+  });
+});
 
 
 

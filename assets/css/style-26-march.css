@@ -369,7 +369,9 @@ body {
 
   justify-content: center;
 }
-
+.cta-line h2:hover{
+  color: var(--second-color);
+}
 /* initial state */
 .cta-line .left {
   transform: translateX(-180%);

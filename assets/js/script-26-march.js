@@ -18,21 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-// ROBOT (starts later when text reaches it)
-tl.to(".hero-obj", {
-  x: "-110vw",
-  scale: 0.95,
-  ease: "none"
-}, 0);
 
-// movement to img 
-gsap.to(".hero-obj", {
-  y: "+=20",
-  repeat: -1,
-  yoyo: true,
-  duration: 2,
-  ease: "sine.inOut"
-});
 
 // ABOUT TEXT COLOR
 gsap.to(".about-text", {
@@ -123,6 +109,29 @@ document.querySelectorAll(".side-menu a").forEach(link => {
 });
 
 
+// one line
+const cta = document.querySelector(".cta-line");
+const left = document.querySelector(".left");
+const right = document.querySelector(".right");
+
+window.addEventListener("scroll", () => {
+  const rect = cta.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  let progress = 1 - rect.top / windowHeight;
+
+  // clamp between 0 → 1
+  progress = Math.max(0, Math.min(progress, 1));
+
+  // movement range
+  const maxMove = 120; // matches your CSS start
+
+  const move = maxMove * (1 - progress);
+
+  left.style.transform = `translateX(-${move}%)`;
+  right.style.transform = `translateX(${move}%)`;
+});
+
 
 // About section
 
@@ -140,41 +149,4 @@ window.addEventListener("scroll", () => {
 } else {
   galaxy.rotation.y += 0.0008;
 }
-});
-
-
-// services
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.utils.toArray(".stone").forEach((stone, i) => {
-    gsap.to(stone, {
-      y: "random(-40, 40)",
-      x: "random(-20, 20)",
-      rotation: "random(-15, 15)",
-      duration: gsap.utils.random(3, 6),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: i * 0.2
-    });
-  });
-});
-
-gsap.utils.toArray(".service-card").forEach((card, i) => {
-
-  const isEven = i % 2 === 0;
-
-  gsap.from(card, {
-    x: isEven ? -150 : 150,  // 👈 alternate direction
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out",
-
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%",
-      end: "top 60%",
-      scrub: 1
-    }
-  });
-
 });

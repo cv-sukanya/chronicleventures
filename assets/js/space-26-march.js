@@ -12,7 +12,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.z = 6;
 
 /* =========================
-   🎥 RENDERER (OPTIMIZED)
+   🎥 RENDERER
 ========================= */
 
 const renderer = new THREE.WebGLRenderer({
@@ -27,7 +27,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 /* =========================
-   🌌 STAR TEXTURE (FIX BOX ISSUE)
+   🌌 TEXTURES
 ========================= */
 
 const loader = new THREE.TextureLoader();
@@ -37,7 +37,7 @@ const starTexture = loader.load(
 );
 
 /* =========================
-   🌌 GALAXY (SPIRAL + GLOW)
+   🌌 GALAXY (BACKGROUND)
 ========================= */
 
 const isMobile = window.innerWidth < 768;
@@ -68,7 +68,8 @@ galaxyGeo.setAttribute(
 );
 
 const galaxyMat = new THREE.PointsMaterial({
-  size: 0.5,
+  size: 0.085,
+  opacity: 0.6,
   map: starTexture,
   transparent: true,
   depthWrite: false,
@@ -79,29 +80,46 @@ const galaxy = new THREE.Points(galaxyGeo, galaxyMat);
 scene.add(galaxy);
 
 /* =========================
-   🪐 HERO PLANET
+   🛸 UFO
 ========================= */
 
-const planet = new THREE.Mesh(
-  new THREE.SphereGeometry(1.4, 64, 64),
-  new THREE.MeshStandardMaterial({
-    map: loader.load("assets/images/stone-texture.jpg"), // replace with your texture
-    roughness: 0.7,
-  })
-);
+const ufoTexture = loader.load("assets/images/ufo.png");
 
-planet.position.set(2, 1, -3);
-scene.add(planet);
+const ufoMaterial = new THREE.SpriteMaterial({
+  map: ufoTexture,
+  transparent: true,
+  depthWrite: false,
+});
+
+const ufo = new THREE.Sprite(ufoMaterial);
+
+ufo.position.set(2, 1, -2);
+ufo.scale.set(2.5, 1.2, 1.5); //(width, height, depth);
+
+scene.add(ufo);
 
 /* =========================
-   ✨ LIGHTING
+   ✨ UFO GLOW
 ========================= */
 
-const light = new THREE.PointLight(0xffffff, 2);
-light.position.set(3, 3, 3);
-scene.add(light);
+const glowTexture = loader.load(
+  "https://threejs.org/examples/textures/sprites/glow.png"
+);
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+const glowMaterial = new THREE.SpriteMaterial({
+  map: glowTexture,
+  color: 0x00ff99,
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+});
+
+const glow = new THREE.Sprite(glowMaterial);
+
+glow.position.set(2, 0.5, -2);
+glow.scale.set(3, 3, 1);
+
+scene.add(glow);
 
 /* =========================
    🌠 SHOOTING STARS
@@ -143,8 +161,47 @@ function createShootingStar() {
 
 setInterval(createShootingStar, 1200);
 
+/* =========================
+   ✨ PNG SPARK STARS
+========================= */
 
+const star1 = loader.load("assets/images/small_star.png");
+const star2 = loader.load("assets/images/big_star.png");
 
+const sparkleGroup = new THREE.Group();
+
+const sparkleCount = 15;
+
+for (let i = 0; i < sparkleCount; i++) {
+  const texture = Math.random() > 0.5 ? star1 : star2;
+
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    color: 0xcc66ff,
+    depthWrite: false,
+  });
+
+  const sprite = new THREE.Sprite(material);
+
+  sprite.position.set(
+    (Math.random() - 0.5) * 20,
+    (Math.random() - 0.5) * 10,
+    Math.random() * 5
+  );
+
+  const scale = Math.random() * 1.5 + 0.5;
+  sprite.scale.set(scale, scale, 1);
+
+  sprite.userData = {
+    speed: Math.random() * 0.02 + 0.01,
+  };
+
+  sparkleGroup.add(sprite);
+}
+
+scene.add(sparkleGroup);
 
 /* =========================
    🖱️ MOUSE PARALLAX
@@ -159,7 +216,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* =========================
-   ⚡ SCROLL WARP
+   ⚡ SCROLL
 ========================= */
 
 let scrollY = 0;
@@ -169,7 +226,7 @@ window.addEventListener("scroll", () => {
 });
 
 /* =========================
-   🎥 ANIMATION LOOP
+   🎥 ANIMATION
 ========================= */
 
 function animate() {
@@ -177,22 +234,34 @@ function animate() {
 
   // galaxy rotation
   galaxy.rotation.y += 0.0008;
-  galaxyMat.size = 0.08 + Math.sin(Date.now() * 0.002) * 0.02;
 
-  // planet float
-  planet.rotation.y += 0.002;
-  planet.position.y = Math.sin(Date.now() * 0.001) * 0.3;
+  // UFO motion
+  ufo.position.y = 1 + Math.sin(Date.now() * 0.0015) * 0.3;
+  ufo.position.x = 2 + Math.sin(Date.now() * 0.0008) * 0.5;
+  ufo.material.rotation = Math.sin(Date.now() * 0.001) * 0.05;
+
+  // glow follow
+  glow.position.x = ufo.position.x;
+  glow.position.y = ufo.position.y - 0.5;
+
+  // sparkle stars
+  sparkleGroup.children.forEach((star, i) => {
+    const time = Date.now() * 0.002 + i;
+
+    const scale = 0.8 + Math.sin(time * star.userData.speed * 50) * 0.5;
+    star.scale.set(scale, scale, 1);
+
+    star.material.opacity = 0.6 + Math.sin(time * 2) * 0.4;
+  });
 
   // shooting stars
   shootingStars.forEach((s) => {
     s.position.add(s.velocity);
   });
 
-  // smooth camera
+  // camera movement
   camera.position.x += (mouseX * 2 - camera.position.x) * 0.04;
   camera.position.y += (-mouseY * 2 - camera.position.y) * 0.04;
-
-  // scroll zoom
   camera.position.z = 6 - scrollY * 0.003;
 
   camera.lookAt(scene.position);

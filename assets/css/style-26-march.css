@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+@font-face {
+  font-family: "Bangers";
+  src: url("../fonts/Bangers-Regular.ttf") format("ttf");
+}
+
+:root {
+  --font-main: 'Bangers', system-ui;
+  --bold-color: #0be00f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body {
+  background: #0a0a0a;
+  color: white;
+  overflow-x: hidden;
+
+}
+
+#space-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* NAVBAR */
+.navbar {
+  /* position: fixed; */
+  width: 100%;
+  top: 0;
+  padding: 50px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.nav-left {
+  font-size: 34px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-family: var(--font-main);
+  z-index: 9;
+}
+
+.nav-left:hover {
+  color: var(--bold-color);
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  letter-spacing: 2px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.nav-center img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-right {
+  z-index: 9;
+}
+
+.nav-right button {
+  background: none;
+  border: none;
+
+
+}
+
+.nav-right button a {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 34px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nav-right button a:hover {
+  color: var(--bold-color);
+}
+
+
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #111;
+  padding: 120px 50px;
+  z-index: 999;
+
+  transform: translateX(-100%);
+}
+
+/* menu text */
+.side-menu ul {
+  list-style: none;
+}
+
+.side-menu ul li {
+  margin-bottom: 30px;
+}
+
+.side-menu ul li a {
+  font-size: 3vw;
+  font-family: var(--font-main);
+  letter-spacing: 3px;
+  display: inline-block;
+  transition: 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+}
+
+.side-menu ul li a:hover {
+  transform: translateX(10px);
+  color: var(--bold-color);
+}
+
+/* Optional overlay */
+.menu-overlay {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-left {
+    font-size: 18px;
+  }
+
+  .nav-center img {
+    height: 40px;
+  }
+
+  .nav-right button a {
+    font-size: 18px;
+  }
+
+  .side-menu ul li a {
+    font-size: 18px;
+  }
+
+  
+
+  .hero-obj {
+    width: 200px;
+  }
+
+  .about-text {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Marquee wrapper centered */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeMove 13s linear infinite;
+}
+/* Text */
+.hero-text {
+  font-size: clamp(40px, 10vw, 180px); /* ✅ responsive */
+  white-space: nowrap;
+  font-family: var(--font-main);
+  letter-spacing: clamp(2px, 0.5vw, 8px);
+  color: var(--bold-color);
+  padding-right: 5vw;
+  text-align: center;
+}
+
+/* Animation */
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.space-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.space {
+  position: absolute;
+  width: clamp(60px, 8vw, 150px);
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+#space-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* fallback */
+.no-webgl {
+  background: radial-gradient(circle at center, #0b0f1a, #000);
+}
+
+/* RANDOM POSITIONS */
+
+.obj1 {
+  top: 1%;
+  left: 15%;
+  width: 20%;
+}
+
+.obj2 {
+  top: 20%;
+  left: 75%;
+}
+
+.obj3 {
+  top: 60%;
+  left: 50%;
+}
+
+.obj1 { animation-delay: 0s; }
+.obj2 { animation-delay: 2s; }
+.obj3 { animation-delay: 4s; }
+
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(20px, -30px) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    font-size: 22vw;
+  }
+  .obj1 {
+  top: 10%;
+  left: 15%;
+  width: 70%;
+}
+
+.obj2 {
+  top: 30%;
+  left: 25%;
+}
+  .obj3 {
+    display: none;
+  }
+
+  .space {
+    width: 60px;
+    opacity: 0.8;
+  }
+}
+
+/* About section */
+.about {
+  position: relative;
+  padding: 120px 20px;
+  color: #fff;
+  text-align: center;
+  background: transparent; /* important */
+  z-index: 2;
+
+  /* opacity: 0; */
+  transform: translateY(80px);
+  transition: all 1s ease;
+}
+.curve {
+  position: absolute;
+  /* top: -150px; */
+  left: 0;
+  width: 100%;
+  height: 300px;
+
+  /* background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(5, 8, 20, 0.8) 50%,
+    #050814 100%
+  ); */
+
+  pointer-events: none;
+}
+.curve-glow {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 255, 150, 0.15),
+    transparent 70%
+  );
+
+  filter: blur(60px);
+}
+.about h2 {
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+  
+  background: linear-gradient(90deg, #ffffff, #00ff15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.about .content h2{
+  color: var(--bold-color);
+  z-index: 99;
+}
+.about-text {
+  max-width: 800px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  color: rgb(255, 255, 255);
+}
+.floating-obj {
+  position: absolute;
+  width: 80px;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+}
+
+.a-obj1 {
+  top: 20%;
+  left: 10%;
+  width: 10%;
+}
+.a-obj2 {
+  top: 50%;
+  left: 90%;
+  width: 10%;
+}
+.a-obj3 {
+  top: 90%;
+  left: 40%;
+  width: 10%;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}

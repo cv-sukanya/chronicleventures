@@ -408,7 +408,12 @@ body {
     gap: 10px;
   }
 }
-
+@media (max-width: 468px){
+  .cta-line h2{
+    gap: 10px;
+    letter-spacing: 1px;
+  }
+}
 /* About section */
 .about {
   position: relative;

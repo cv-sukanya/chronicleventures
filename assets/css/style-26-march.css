@@ -37,18 +37,18 @@ body {
 
 /* NAVBAR */
 .navbar {
-  /* position: fixed; */
+  position: fixed;
   width: 100%;
   top: 0;
-  padding: 50px 40px;
+  padding: 40px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+ z-index: 9;
 }
 
 .nav-left {
-  font-size: 34px;
+  font-size: 44px;
   cursor: pointer;
   letter-spacing: 2px;
   font-family: var(--font-main);
@@ -89,7 +89,7 @@ body {
 .nav-right button a {
   color: rgb(255, 255, 255);
   cursor: pointer;
-  font-size: 34px;
+  font-size: 44px;
   letter-spacing: 1px;
   text-decoration: none;
 }
@@ -172,7 +172,7 @@ body {
 
 
   .about-text {
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: center;
     padding: 0 20px;
     letter-spacing: none;
@@ -185,7 +185,7 @@ body {
     padding: 25px 15px;
   }
   .content .about-text{
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
@@ -203,7 +203,7 @@ body {
 /* Marquee fixed to bottom */
 .marquee {
   position: absolute;
-  bottom: 20%;
+  bottom: 0%;
   left: 0;
   width: 100%;
   z-index: 3;
@@ -403,17 +403,25 @@ body {
 }
 
 @media (max-width:768px){
+  .cta-line {
+    height: 70vh;
+  }
   .cta-line h2 {
     letter-spacing: 1px;
     gap: 10px;
   }
 }
 @media (max-width: 468px){
+  .cta-line {
+    height: 60vh;
+  }
   .cta-line h2{
     gap: 10px;
     letter-spacing: 1px;
   }
 }
+
+
 /* About section */
 .about {
   position: relative;
@@ -445,38 +453,51 @@ body {
 }
 .curve-glow {
   position: absolute;
-  top: 0;
+  top: 40%;
   width: 100%;
   height: 100%;
 
   background: radial-gradient(
     circle at center,
-    rgba(0, 255, 150, 0.15),
+    #97ac9166,
     transparent 70%
   );
 
-  filter: blur(60px);
+  filter: blur(100px);
 }
-.about h2 {
+/* .about h2 {
   font-size: clamp(40px, 6vw, 80px);
   letter-spacing: 4px;
   margin-bottom: 30px;
   
-  background: linear-gradient(90deg, #ffffff, #00ff15);
+  background: var(--bold-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-.about .content h2{
+} */
+/* .about .content h2{
   color: var(--bold-color);
   z-index: 99;
-}
+} */
 .about-text {
-  max-width: 800px;
+  max-width: 1500px;
   margin: auto;
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 80px;
   letter-spacing: 1px;
   color: rgb(255, 255, 255);
+}
+.about-text-green {
+  max-width: 800px;
+  margin: auto;
+  font-size: 80px;
+  letter-spacing: 1px;
+  color: var(--bold-color);
+}
+.about-text-purple {
+  max-width: 800px;
+  margin: auto;
+  font-size: 80px;
+  letter-spacing: 1px;
+  color: var(--second-color);
 }
 .floating-obj {
   position: absolute;
@@ -503,4 +524,40 @@ body {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px){
+  .content .about-text {
+  max-width: 500px;
+  margin: auto;
+  font-size: 50px;
+}
+.about-text-green {
+  max-width: 500px;
+  margin: auto;
+  font-size: 50px;
+}
+.about-text-purple {
+  max-width: 500px;
+  margin: auto;
+  font-size: 50px;
+}
+}
+
+@media (max-width: 476px){
+  .content .about-text {
+  max-width: 500px;
+  margin: auto;
+  font-size: 30px;
+}
+.about-text-green {
+  max-width: 500px;
+  margin: auto;
+  font-size: 30px;
+}
+.about-text-purple {
+  max-width: 500px;
+  margin: auto;
+  font-size: 30px;
+}
 }

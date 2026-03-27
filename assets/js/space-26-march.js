@@ -68,7 +68,7 @@ galaxyGeo.setAttribute(
 );
 
 const galaxyMat = new THREE.PointsMaterial({
-  size: 0.085,
+  size: isMobile ? 0.085: 0.08,
   opacity: 0.6,
   map: starTexture,
   transparent: true,
@@ -78,7 +78,7 @@ const galaxyMat = new THREE.PointsMaterial({
 
 const galaxy = new THREE.Points(galaxyGeo, galaxyMat);
 scene.add(galaxy);
-
+  
 /* =========================
    🛸 UFO
 ========================= */
@@ -93,8 +93,16 @@ const ufoMaterial = new THREE.SpriteMaterial({
 
 const ufo = new THREE.Sprite(ufoMaterial);
 
-ufo.position.set(2, 1, -2);
-ufo.scale.set(2.5, 1.2, 1.5); //(width, height, depth);
+// ufo.position.set(2, 1, -2);
+// ufo.scale.set(2.5, 1.2, 1.5); //(width, height, depth);
+
+if (isMobile) {
+  ufo.position.set(0.8, 0.5, -1.5);
+  ufo.scale.set(1.8, 0.9, 1);
+} else {
+  ufo.position.set(2, 1, -2);
+  ufo.scale.set(2.5, 1.2, 1);
+}
 
 scene.add(ufo);
 
@@ -116,8 +124,11 @@ const glowMaterial = new THREE.SpriteMaterial({
 
 const glow = new THREE.Sprite(glowMaterial);
 
-glow.position.set(2, 0.5, -2);
-glow.scale.set(3, 3, 1);
+if (isMobile) {
+  glow.scale.set(2, 2, 1);
+} else {
+  glow.scale.set(3, 3, 1);
+}
 
 scene.add(glow);
 

@@ -135,18 +135,31 @@ window.addEventListener("scroll", () => {
 
 // About section
 
-const aboutSection = document.querySelector(".about");
+const about = document.querySelector(".about");
+const star = document.querySelector(".center-star");
+const content = document.querySelector(".content");
 
 window.addEventListener("scroll", () => {
-  const rect = aboutSection.getBoundingClientRect();
+  const rect = about.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
 
-  if (rect.top < window.innerHeight) {
-    aboutSection.style.opacity = 1;
-    aboutSection.style.transform = "translateY(0px)";
+  // progress from 0 → 1
+  let progress = 1 - rect.top / windowHeight;
+
+  // clamp
+  progress = Math.max(0, Math.min(progress, 1));
+
+  // ⭐ Step 1: show star
+  if (progress > 0.2) {
+    star.style.opacity = 1;
   }
-  if (scrollY > window.innerHeight * 0.5) {
-  galaxy.rotation.y += 0.0002; // slower = cinematic
-} else {
-  galaxy.rotation.y += 0.0008;
-}
+
+  // ⭐ Step 2: scale star smoothly
+  let scale = 0.5 + progress * 20; // controls growth
+  star.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+  // ⭐ Step 3: show text when star is big
+  if (progress > 0.8) {
+    content.classList.add("show");
+  }
 });

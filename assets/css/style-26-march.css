@@ -333,7 +333,7 @@ body {
 @media (max-width: 468px) {
 
   .marquee {
-  bottom: 0%;
+  bottom: 10%;
 
 }
 

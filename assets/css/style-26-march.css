@@ -16,13 +16,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-main);
+  /* overflow-x: hidden; */
 }
 
 body {
   background: #0a0a0a;
   color: white;
   overflow-x: hidden;
-
+  
 }
 
 #space-canvas {
@@ -196,6 +197,8 @@ body {
   height: 100vh;
   /* position: relative; */
   overflow: hidden;
+  max-width: 100vw;
+  /* position: relative; */
 
   /* ❌ remove flex (not needed) */
 }
@@ -300,6 +303,13 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero{
+    position: relative;
+  }
+  .marquee {
+  bottom: 20%;
+
+}
 
   .space-bg .obj1 {
   top: 10%;
@@ -324,6 +334,15 @@ body {
 
 /* mobile */
 @media (max-width: 468px) {
+
+  .hero{
+    position: relative;
+  }
+  .marquee {
+  bottom: 20%;
+
+}
+
 
   .space-bg .obj1 {
   top: 10%;
@@ -360,7 +379,7 @@ body {
 }
 
 .cta-line h2 {
-  font-size: clamp(40px, 8vw, 120px);
+  font-size: clamp(30px, 8vw, 120px);
   color: var(--bold-color);
   display: flex;
   letter-spacing: 5px;
@@ -388,21 +407,12 @@ body {
   white-space: nowrap; /* 👈 prevents breaking */
   will-change: transform;
 }
-/* animation */
-/* .cta-line.active .left,
-.cta-line.active .right {
-  transform: translateX(0);
-  opacity: 1;
-  transition: all 1.2s ease;
-}
 
-.cta-line.active .left {
-  transition-delay: 0.1s;
+@media (max-width:768px){
+  .cta-line h2 {
+    letter-spacing: 1px;
+  }
 }
-
-.cta-line.active .right {
-  transition-delay: 0.3s;
-} */
 
 /* About section */
 .about {

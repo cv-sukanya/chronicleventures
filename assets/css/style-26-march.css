@@ -405,6 +405,7 @@ body {
 @media (max-width:768px){
   .cta-line h2 {
     letter-spacing: 1px;
+    gap: 10px;
   }
 }
 

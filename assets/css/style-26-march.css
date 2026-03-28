@@ -648,58 +648,62 @@ body {
 } */
 }
 
-/* explore */
+/* explore section */
 .explore {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--second-color);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   overflow: hidden;
   z-index: 5;
 }
 
+/* Asteroid container */
+.asteroids {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+}
+
+/* Stones */
+.stone {
+  position: absolute;
+  width: 200px;
+  opacity: 10;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
+  /* animation: floatAnim 6s ease-in-out infinite; */
+}
+
+/* TEXT BELOW */
 .explore-text {
+  margin-top: 100px;
   font-size: clamp(40px, 6vw, 80px);
   color: #fff;
-  line-height: 1.2;
-  letter-spacing: 5px;
+  text-align: center;
   z-index: 2;
+  letter-spacing: 3px;
 }
-.stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 9;
+#changing-word {
+  color: var(--bold-color);
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: twinkle 2s infinite ease-in-out;
-}
+@media (max-width: 768px) {
+  .asteroids {
+    height: 50vh;
+  }
 
-/* glow + blow effect */
-@keyframes twinkle {
-  0% {
-    opacity: 0.2;
-    transform: scale(1);
-    box-shadow: 0 0 2px #fff;
+  .stone {
+    width: 100px;
+    opacity: 10;
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.8);
-    box-shadow: 0 0 8px #fff, 0 0 15px #fff;
-  }
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-    box-shadow: 0 0 2px #fff;
+
+  .explore-text {
+    margin-top: 20px;
   }
 }

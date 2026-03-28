@@ -183,26 +183,56 @@ window.addEventListener("scroll", () => {
 
 
 // explore section 
-const starsContainer = document.querySelector(".stars");
+const stones = document.querySelectorAll(".stone");
 
-for (let i = 0; i < 80; i++) {
-  const star = document.createElement("div");
-  star.classList.add("star");
+stones.forEach((stone, index) => {
+  // random vertical position
+  const y = Math.random() * 80;
+  stone.style.top = y + "%";
 
-  // random position
-  star.style.top = Math.random() * 100 + "%";
-  star.style.left = Math.random() * 100 + "%";
+  // random size
+  const scale = 0.5 + Math.random();
 
-  // random animation delay
-  star.style.animationDelay = Math.random() * 2 + "s";
+  // direction
+  const direction = Math.random() > 0.5 ? 1 : -1;
 
-  // random size variation
-  const size = Math.random() * 2 + 1;
-  star.style.width = size + "px";
-  star.style.height = size + "px";
+  // speed
+  const speed = 1 + Math.random() * 1;
 
-  starsContainer.appendChild(star);
-}
+  // rotation
+  let rotation = Math.random() * 360;
+  const rotationSpeed = 0.1 + Math.random() * 0.3;
+
+  // ✅ FIX 1: Some stones start inside screen
+  let x;
+  if (index < 4) {
+    // first 4 stones visible initially
+    x = Math.random() * window.innerWidth;
+  } else {
+    // rest start outside
+    x = direction === 1 ? -100 : window.innerWidth + 100;
+  }
+
+  function animate() {
+    x += speed * direction;
+    rotation += rotationSpeed;
+
+    // loop reset
+    if (direction === 1 && x > window.innerWidth + 100) {
+      x = -100;
+    } else if (direction === -1 && x < -100) {
+      x = window.innerWidth + 100;
+    }
+
+    // ✅ FIX 2: apply ALL transforms together
+    stone.style.transform = `translateX(${x}px) scale(${scale}) rotate(${rotation}deg)`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
+
 
 const words = ["Marketing", "Events", "Branding"];
 const wordEl = document.getElementById("changing-word");
@@ -224,11 +254,3 @@ window.addEventListener("scroll", () => {
   }
 });
 
-window.addEventListener("mousemove", (e) => {
-  const stars = document.querySelectorAll(".star");
-
-  stars.forEach((star, i) => {
-    const speed = (i % 5) * 0.02;
-    star.style.transform = `translate(${e.clientX * speed}px, ${e.clientY * speed}px)`;
-  });
-});

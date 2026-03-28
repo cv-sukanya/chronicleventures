@@ -134,32 +134,101 @@ window.addEventListener("scroll", () => {
 
 
 // About section
-
 const about = document.querySelector(".about");
 const star = document.querySelector(".center-star");
 const content = document.querySelector(".content");
 
 window.addEventListener("scroll", () => {
-  const rect = about.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
+  requestAnimationFrame(() => {
+    const rect = about.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
 
-  // progress from 0 → 1
-  let progress = 1 - rect.top / windowHeight;
+    let progress = 1.2 - rect.top / windowHeight;
+    progress = Math.max(0, Math.min(progress, 1));
 
-  // clamp
-  progress = Math.max(0, Math.min(progress, 1));
+    const isMobile = window.innerWidth < 768;
 
-  // ⭐ Step 1: show star
-  if (progress > 0.2) {
-    star.style.opacity = 1;
+    let scale;
+
+    if (isMobile) {
+      // ✅ FIX: use BASE width instead of offsetWidth
+      const baseWidth = 100; // same as your CSS default
+      const maxWidth = window.innerWidth * 0.85;
+
+      const maxScale = maxWidth / baseWidth;
+
+      // smooth controlled scaling
+      scale = 0.5 + progress * maxScale;
+
+      // clamp (extra safety)
+      scale = Math.min(scale, maxScale);
+    } else {
+      scale = 0.5 + progress * 20;
+    }
+
+    // apply transform
+    star.style.opacity = progress > 0.2 ? 1 : 0;
+    star.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+    // glow
+    const glow = progress * (isMobile ? 20 : 40);
+    star.style.filter = `drop-shadow(0 0 ${glow}px #a955f740)`;
+
+    // content
+    if (progress > 0.2) {
+      content.classList.add("show");
+    }
+  });
+});
+
+
+// explore section 
+const starsContainer = document.querySelector(".stars");
+
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+
+  // random position
+  star.style.top = Math.random() * 100 + "%";
+  star.style.left = Math.random() * 100 + "%";
+
+  // random animation delay
+  star.style.animationDelay = Math.random() * 2 + "s";
+
+  // random size variation
+  const size = Math.random() * 2 + 1;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+
+  starsContainer.appendChild(star);
+}
+
+const words = ["Marketing", "Events", "Branding"];
+const wordEl = document.getElementById("changing-word");
+const section = document.querySelector(".explore");
+
+window.addEventListener("scroll", () => {
+  const rect = section.getBoundingClientRect();
+  const progress = 1 - rect.top / window.innerHeight;
+
+  let index = Math.floor(progress * words.length);
+
+  if (index >= 0 && index < words.length) {
+    wordEl.style.opacity = 0;
+
+    setTimeout(() => {
+      wordEl.textContent = words[index];
+      wordEl.style.opacity = 1;
+    }, 200);
   }
+});
 
-  // ⭐ Step 2: scale star smoothly
-  let scale = 0.5 + progress * 20; // controls growth
-  star.style.transform = `translate(-50%, -50%) scale(${scale})`;
+window.addEventListener("mousemove", (e) => {
+  const stars = document.querySelectorAll(".star");
 
-  // ⭐ Step 3: show text when star is big
-  if (progress > 0.8) {
-    content.classList.add("show");
-  }
+  stars.forEach((star, i) => {
+    const speed = (i % 5) * 0.02;
+    star.style.transform = `translate(${e.clientX * speed}px, ${e.clientY * speed}px)`;
+  });
 });

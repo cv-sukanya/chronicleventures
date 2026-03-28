@@ -22,7 +22,7 @@
 body {
   background: #0a0a0a;
   color: white;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   
 }
 
@@ -380,7 +380,7 @@ body {
   color: var(--bold-color);
   display: flex;
   letter-spacing: 5px;
-  gap: 40px;
+  gap: 30px;
   /* overflow: hidden; */
 
   justify-content: center;
@@ -437,6 +437,12 @@ body {
   /* opacity: 0; */
   transform: translateY(80px);
   transition: all 1s ease;
+
+  /* overflow-x: hidden; */
+  overflow: visible;
+  overflow-x: clip;
+
+  
 }
 .curve {
   position: absolute;
@@ -485,23 +491,26 @@ body {
 
 .about .center-star {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
-  width:100px;
+  width:90px;
   transform: translate(-50%, -50%) scale(0.3);
   opacity: 0;
   z-index: 3;
   pointer-events: none;
   transition: transform 0.2s linear, opacity 0.3s ease;
+  max-width: none;
+  
+
 }
 
 .about .content {
   opacity: 0;
   transform: translateY(40px) scale(0.9);
   transition: all 0.8s ease;
-  z-index: 4;
+  z-index: 5;
   position: relative;
-
+  margin-top: 70px;
 }
 .about .center-star.animate {
   animation: starEntry 1.5s ease-out forwards,
@@ -590,11 +599,21 @@ body {
 }
 
 @media (max-width: 768px){
+  .about .center-star {
+    width: 280px;
+
+  }
+  
+   .about .content{
+    margin-top: 15px;
+   }
+   
   .content .about-text {
   max-width: 500px;
   margin: auto;
   font-size: 50px;
 }
+
 .about-text-green {
   max-width: 500px;
   margin: auto;
@@ -608,10 +627,14 @@ body {
 }
 
 @media (max-width: 476px){
+  .center-star {
+    width: 300px;
+  }
   .content .about-text {
   max-width: 500px;
   margin: auto;
   font-size: 30px;
+  
 }
 .about-text-green {
   max-width: 500px;
@@ -623,4 +646,60 @@ body {
   margin: auto;
   font-size: 30px;
 } */
+}
+
+/* explore */
+.explore {
+  position: relative;
+  height: 100vh;
+  background: var(--second-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.explore-text {
+  font-size: clamp(40px, 6vw, 80px);
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: 5px;
+  z-index: 2;
+}
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* glow + blow effect */
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+    box-shadow: 0 0 2px #fff;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.8);
+    box-shadow: 0 0 8px #fff, 0 0 15px #fff;
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+    box-shadow: 0 0 2px #fff;
+  }
 }

@@ -682,18 +682,118 @@ body {
 
 /* TEXT BELOW */
 .explore-text {
-  margin-top: 100px;
-  font-size: clamp(40px, 6vw, 80px);
+  margin-top: 180px;
+  font-size: 8rem;
   color: #fff;
   text-align: center;
+  font-weight: 500;
   z-index: 2;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 #changing-word {
   color: var(--bold-color);
+  display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* Base */
+.e-star {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
+}
+
+/* ⭐ WHITE STAR (fixed position) */
+.white-star {
+  width: clamp(80px, 6vw, 140px);
+
+  top: 50%;
+  left: 72%;
+
+  transform: translate(-50%, -50%);
+}
+
+/* ⭐ WRAPPER */
+.star-wrap {
+  position: absolute;
+  z-index: 2;
+}
+
+/* LEFT GREEN STAR */
+.g1 {
+  top: 45%;
+  left: -5%;
+  transform: translate(-20%, -50%);
+}
+
+/* RIGHT GREEN STAR */
+.g2 {
+  top: 80%;
+  right: 5%;
+  transform: translate(20%, -50%);
+}
+
+/* ⭐ GREEN STAR */
+.green-star {
+  width: clamp(140px, 4vw, 90px);
+  animation: rotateStar linear infinite;
+}
+
+/* different speeds */
+.g1 .green-star { animation-duration: 6s; }
+.g2 .green-star { animation-duration: 8s; }
+
+/* rotation */
+@keyframes rotateStar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* Mobile adjustments */
+
 @media (max-width: 768px) {
+  .explore {
+    margin-top: 100px;
+  }
+  .asteroids {
+    height: 50vh;
+  }
+
+  .stone {
+    width: 150px;
+    opacity: 10;
+  }
+
+  .explore-text {
+    margin: 150px 0;
+    padding: 0 20px;
+    font-size: 3.5rem;
+  }
+
+  .white-star {
+    top: 55%;
+    left: 70%;
+  }
+
+  
+/* LEFT GREEN STAR */
+.g1 {
+  top: 50%;
+  left: -10%;
+  transform: translate(-20%, -50%);
+}
+
+/* RIGHT GREEN STAR */
+.g2 {
+  top: 80%;
+  right: 10%;
+  transform: translate(20%, -50%);
+}
+}
+@media (max-width: 476px) {
+  /* .explore {
+    margin-top: 200px;
+  } */
   .asteroids {
     height: 50vh;
   }
@@ -704,6 +804,28 @@ body {
   }
 
   .explore-text {
-    margin-top: 20px;
+    margin: 200px 0;
+    padding: 0 20px;
+    font-size: 3rem;
   }
+
+  .white-star {
+    top: 55%;
+    left: 85%;
+  }
+
+  
+/* LEFT GREEN STAR */
+.g1 {
+  top: 40%;
+  left: -15%;
+  transform: translate(-20%, -50%);
+}
+
+/* RIGHT GREEN STAR */
+.g2 {
+  top: 80%;
+  right: 20%;
+  transform: translate(20%, -50%);
+}
 }

@@ -236,21 +236,20 @@ stones.forEach((stone, index) => {
 
 const words = ["Marketing", "Events", "Branding"];
 const wordEl = document.getElementById("changing-word");
-const section = document.querySelector(".explore");
 
-window.addEventListener("scroll", () => {
-  const rect = section.getBoundingClientRect();
-  const progress = 1 - rect.top / window.innerHeight;
+let index = 0;
+function changeWord() {
+  wordEl.style.opacity = 0;
+  wordEl.style.transform = "translateY(10px)";
 
-  let index = Math.floor(progress * words.length);
+  setTimeout(() => {
+    index = (index + 1) % words.length;
+    wordEl.textContent = words[index];
 
-  if (index >= 0 && index < words.length) {
-    wordEl.style.opacity = 0;
+    wordEl.style.opacity = 1;
+    wordEl.style.transform = "translateY(0)";
+  }, 200);
+}
 
-    setTimeout(() => {
-      wordEl.textContent = words[index];
-      wordEl.style.opacity = 1;
-    }, 200);
-  }
-});
-
+// change every 2 seconds
+setInterval(changeWord, 2000);

@@ -89,6 +89,7 @@ const ufoMaterial = new THREE.SpriteMaterial({
   map: ufoTexture,
   transparent: true,
   depthWrite: false,
+  
 });
 
 const ufo = new THREE.Sprite(ufoMaterial);

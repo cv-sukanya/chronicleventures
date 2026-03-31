@@ -253,3 +253,115 @@ function changeWord() {
 
 // change every 2 seconds
 setInterval(changeWord, 2000);
+
+
+
+// What we do 
+// gsap.registerPlugin(ScrollTrigger);
+
+// const isMobile = window.innerWidth < 768;
+
+// document.querySelectorAll('.service').forEach((service, index) => {
+
+//   const isLeft = service.classList.contains('left');
+//   const astro = service.querySelector('.astro');
+
+//   // HORIZONTAL MOVEMENT (TEXT STRIP)
+//   gsap.fromTo(service,
+//     {
+//       x: isLeft ? -150 : 150
+//     },
+//     {
+//       x: 0,
+//       ease: "power3.out",
+//       scrollTrigger: {
+//         trigger: service,
+//         start: "top 85%",
+//         end: "top 40%",
+//         scrub: true,
+//         delay: index * 0.1
+//       }
+//     }
+//   );
+
+//   // ASTRO PARALLAX (FLOATING)
+//   gsap.fromTo(astro,
+//     {
+//       y: isMobile ? 0 : 40
+//     },
+//     {
+//       y: isMobile ? 0 : -40,
+//       ease: "none",
+//       scrollTrigger: {
+//         trigger: service,
+//         start: "top bottom",
+//         end: "bottom top",
+//         scrub: true
+//       }
+//     }
+//   );
+
+
+//   // RESPONSIVE BEHAVIOUR
+//   ScrollTrigger.matchMedia({
+
+//   "(max-width: 768px)": function () {
+
+//     document.querySelectorAll('.service').forEach((service) => {
+
+//       gsap.fromTo(service,
+//         { y: 80 },
+//         {
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: service,
+//             start: "top 90%",
+//             end: "top 60%",
+//             scrub: true
+//           }
+//         }
+//       );
+
+//     });
+
+//   }
+
+// });
+
+// });
+
+
+
+const services = document.querySelectorAll('.service');
+
+window.addEventListener('scroll', () => {
+
+  const windowHeight = window.innerHeight;
+
+  services.forEach((service) => {
+
+    const rect = service.getBoundingClientRect();
+    const astro = service.querySelector('.astro');
+
+    // progress from 0 → 1
+    let progress = (windowHeight - rect.top) / windowHeight;
+    progress = Math.max(0, Math.min(1, progress));
+
+    // horizontal movement
+    const moveX = (1 - progress) * 120;
+
+    if (service.classList.contains('left')) {
+      service.style.transform = `translateX(${-moveX}px)`;
+    } else {
+      service.style.transform = `translateX(${moveX}px)`;
+    }
+
+    // astro parallax (only desktop)
+    if (window.innerWidth > 768) {
+      let floatY = (progress - 0.5) * 40;
+      astro.style.transform = `translateY(${floatY}px)`;
+    }
+
+  });
+
+});

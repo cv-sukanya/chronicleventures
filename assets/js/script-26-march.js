@@ -257,6 +257,7 @@ setInterval(changeWord, 2000);
 
 
 // What we do 
+
 // gsap.registerPlugin(ScrollTrigger);
 
 // const isMobile = window.innerWidth < 768;
@@ -365,3 +366,27 @@ window.addEventListener('scroll', () => {
   });
 
 });
+
+// why us section
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.fromTo(".why-us h2",
+  {
+    x: 500,   // start from right
+    opacity: 1
+  },
+  {
+    x: 0,     // move to center
+    opacity: 1,
+    ease: "power2.out",
+    
+    scrollTrigger: {
+      trigger: ".why-us",
+      start: "top 80%",   // when section enters
+      end: "top 30%",     // when near center
+      scrub: true         // 🔥 THIS makes it reversible on scroll
+    }
+  }
+);
+
+

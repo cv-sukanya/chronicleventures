@@ -37,7 +37,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-  position: fixed;
+  position:absolute;
   width: 100%;
   top: 0;
   padding: 40px 40px;
@@ -1409,5 +1409,126 @@ body {
     max-width: 100%;
     font-size: 14px;
     line-height: 1.4;
+  }
+}
+
+/* our clients */
+.clients{
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 70px 0;
+}
+.clients h2 {
+  font-size: clamp(30px, 12vw, 150px);
+  color: var(--bold-color);
+  letter-spacing: 3px;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  line-height: 1.2;
+}
+.clients .oc-star-left {
+  position: absolute;
+
+  top: 30%;
+  left: 30%;
+  /* push towards "Do?" */
+
+  width: clamp(90px, 12vw, 280px);
+  height: auto;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  animation: rotateStar 25s linear infinite;
+  will-change: transform;
+}
+
+.clients .oc-star-right {
+  position: absolute;
+
+  top: 40%;
+  left: 75%;
+  /* push towards "Do?" */
+
+  width: clamp(90px, 16vw, 280px);
+  height: auto;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  animation: rotateStar 25s linear infinite;
+  will-change: transform;
+
+}
+
+.client-list {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+  position: relative;
+}
+
+/* Fade edges (optional but sexy) */
+.client-list::before,
+.client-list::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.client-list::before {
+  left: 0;
+  background: linear-gradient(to right, #000, transparent);
+}
+
+.client-list::after {
+  right: 0;
+  background: linear-gradient(to left, #000, transparent);
+}
+
+/* MARQUEE STRUCTURE */
+.client-list .marquee {
+  display: flex;
+  width: 100%;
+}
+
+.client-list  .marquee .marquee-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 120px);
+  width: max-content;
+
+  animation: scrollMarquee 25s linear infinite;
+}
+
+/* LOGOS */
+.client-list  .marquee .marquee-track img {
+  height: clamp(30px, 5vw, 70px);
+  width: auto;
+  object-fit: contain;
+  opacity: 1;
+  transition: 0.3s ease;
+
+  display: block;
+}
+
+.client-list  .marquee .marquee-track img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ANIMATION */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

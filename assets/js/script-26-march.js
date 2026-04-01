@@ -17,9 +17,6 @@ requestAnimationFrame(raf);
 gsap.registerPlugin(ScrollTrigger);
 
 
-
-
-
 // ABOUT TEXT COLOR
 gsap.to(".about-text", {
   color: "#ffffff",

@@ -387,3 +387,72 @@ gsap.fromTo(".why-us h2",
 );
 
 
+// static count 
+const counters = document.querySelectorAll('.counter');
+
+const speed = 50; // lower = faster
+
+const startCounting = (counter) => {
+  const target = +counter.getAttribute('data-target');
+  let count = 0;
+
+  const update = () => {
+    const increment = target / speed;
+
+    if (count < target) {
+      count += increment;
+      counter.innerText = Math.ceil(count) + "+";
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target + "+";
+    }
+  };
+
+  update();
+};
+
+/* 👀 Trigger when visible */
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      startCounting(entry.target);
+      obs.unobserve(entry.target); // run once
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => observer.observe(counter));
+
+
+
+// ask question section
+gsap.registerPlugin(ScrollTrigger);
+
+// TELEPHONE (Right → Center)
+gsap.to(".telephone", {
+  x: "-80vw",
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".ask-section",
+    start: "top 90%",
+    end: "top -50%",
+    scrub: 2
+  }
+});
+
+gsap.to(".left-content", {
+  x: () => {
+    const text = document.querySelector(".telepathy-text");
+    const textWidth = text.offsetWidth;
+    const screenWidth = window.innerWidth;
+
+    return screenWidth - textWidth; // final alignment
+  },
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".ask-section",
+    start: "top 90%",
+    end: "top -10%",
+    scrub: 3
+  }
+});

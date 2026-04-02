@@ -1431,9 +1431,8 @@ body {
 .clients .oc-star-left {
   position: absolute;
 
-  top: 30%;
+  top: 20%;
   left: 30%;
-  /* push towards "Do?" */
 
   width: clamp(90px, 12vw, 280px);
   height: auto;
@@ -1448,8 +1447,8 @@ body {
 .clients .oc-star-right {
   position: absolute;
 
-  top: 40%;
-  left: 75%;
+  top: 25%;
+  left: 65%;
   /* push towards "Do?" */
 
   width: clamp(90px, 16vw, 280px);
@@ -1466,11 +1465,15 @@ body {
 .client-list {
   width: 100%;
   overflow: hidden;
-  margin-top: 40px;
-  position: relative;
+  margin-top: 50px;
+  /* position: relative; */
+  position:static;
+
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
 }
 
-/* Fade edges (optional but sexy) */
 .client-list::before,
 .client-list::after {
   content: "";
@@ -1496,6 +1499,12 @@ body {
 .client-list .marquee {
   display: flex;
   width: 100%;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.05);
+  padding: 20px 0;
+
+  position: relative;
 }
 
 .client-list  .marquee .marquee-track {
@@ -1504,15 +1513,14 @@ body {
   gap: clamp(40px, 6vw, 120px);
   width: max-content;
 
-  animation: scrollMarquee 25s linear infinite;
 }
 
 /* LOGOS */
 .client-list  .marquee .marquee-track img {
-  height: clamp(30px, 5vw, 70px);
+  height: clamp(30px, 6vw, 80px);
   width: auto;
   object-fit: contain;
-  opacity: 1;
+  opacity: 0.9;
   transition: 0.3s ease;
 
   display: block;
@@ -1523,12 +1531,439 @@ body {
   transform: scale(1.1);
 }
 
-/* ANIMATION */
-@keyframes scrollMarquee {
+/* RIGHT → LEFT */
+.marquee-left .marquee-track {
+  animation: marqueeLeft 25s linear infinite;
+}
+
+/* LEFT → RIGHT */
+.marquee-right .marquee-track {
+  animation: marqueeRight 25s linear infinite;
+}
+
+/* KEYFRAMES */
+@keyframes marqueeLeft {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* stats section */
+.stats-section {
+  padding: 40px 150px;
+  /* background: #f3f3f3; */
+}
+
+/* GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 30px 40px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+/* TEXT */
+.stat-card h3 {
+  font-size: clamp(65px, 3vw, 32px);
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--bold-color);
+  letter-spacing: 3px;
+}
+
+.stat-card h4 {
+  font-size: clamp(20px, 1.5vw, 18px);
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  letter-spacing: 2px;
+  color: var(--bold-color);
+}
+
+.stat-card p {
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* MESSAGE BAR */
+.stats-message {
+  margin-top: 20px;
+  background:rgba(255,255,255,0.05);
+  padding: 18px 20px;
+  border-radius: 12px;
+  font-size: clamp(58px, 2vw, 52px);
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--bold-color);
+}
+
+/* 📱 TABLET */
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-card p{
+    font-size: 15px;
+  }
+  
+}
+
+/* 📱 MOBILE */
+@media (max-width: 576px) {
+  .stats-section{
+    padding: 20px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    text-align: center;
+  }
+  
+}
+
+
+/* ask question */
+.ask-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;   /* ✅ instead of 140vh */
+  height: auto;
+  padding-top: 50px;
+  overflow: hidden;
+  display: flex;
+  align-items:end;
+  justify-content: center;
+
+}
+
+/* Background */
+.ask-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+
+  /* object-fit: cover;   */
+  object-position: center;
+
+  z-index: 1;
+}
+
+/* Telephone */
+.telephone {
+  position: absolute;
+  width: 25vw;
+  max-width: 600px;
+  right: -50%;
+  top: 10%;
+  z-index: 3;
+  transform: rotate(-10deg) translateZ(0);
+
+}
+
+/* Left content wrapper */
+.left-content {
+  position: absolute;
+  left: 0;
+  z-index: 4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  width: max-content;
+  transform: translateX(-100%);
+}
+
+/* Professor */
+.professor {
+  width: 25vw;
+  max-width: 400px;
+ bottom: 80%;
+}
+.telepathy-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+}
+/* Green text */
+.telepathy-text {
+  background: var(--bold-color);
+  padding: 40px 200px;
+  font-size: 4.5rem;
+  display: inline-block;  /* important */
+  white-space: nowrap;
+}
+.telepathy-text:hover{
+  background: var(--second-color);
+  color: var(--bold-color);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .telephone {
+    width: 50vw;
+    top: 15%;
+  }
+  .professor {
+    width: 35vw;
+  }
+
+  .telepathy-text {
+    font-size: 2.5vw;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ask-section {
+    height: 100vh;
+  }
+
+  .telephone {
+    width: 50vw;
+    top: 10%;
+  }
+
+  .left-content {
+    bottom: 0;
+    left: -20%;
+  }
+
+  .professor {
+    width: 60vw;
+  }
+
+  .telepathy-text {
+    font-size: 5vw;
+    padding: 25px 100px;
+  }
+}
+
+@media (max-width: 476px){
+  .left-content {
+    bottom: 0;
+    left: 0%;
+  }
+}
+
+
+
+/* FOOTER */
+.footer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Background */
+.footer-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Content */
+.footer-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Links */
+.footer-links {
+  position: absolute;
+  right: 50px;
+  top: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-links a {
+  color: #39ff14;
+  font-size: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  text-align: right;
+  letter-spacing: 2px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* Social icons */
+.socials {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: end;
+}
+
+.socials a {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.socials a:hover{
+  background-color: var(--bold-color);
+}
+/* Bottom */
+.footer-bottom {
+  text-align: right;
+  font-size: 1rem;
+  margin-top: 20px;
+  
+  
+}
+
+.footer-bottom a {
+  margin: 0;
+  color: #39ff14;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 100;
+  display:flex;
+  margin-bottom: 10px;
+  justify-content: end;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-weight: 100;
+}
+.footer-mob{
+  display: none;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .footer-links {
+    right: 30px;
+  }
+
+  .footer-links a {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .footer {
+    min-height: auto;
+    /* padding: 40px 0; */
+  }
+
+  .footer-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 🔥 REMOVE absolute layout */
+  .footer-links {
+    position: static;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
+    gap: 15px;
+
+    margin-top: 80px;
+  }
+
+  /* Links centered */
+  .footer-links a {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  /* Social icons centered */
+  .socials {
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .socials a {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* Bottom section centered */
+  .footer-bottom {
+    /* margin-top: 20px;
+    text-align: center; */
+    display: none;
+  }
+
+  .footer-mob{
+    text-align: center;
+  }
+  .footer-mob a {
+    display: inline-block;
+    margin: 5px 10px;
+    text-decoration: none;
+  }
+
+
+  .footer-bottom p {
+    margin-top: 8px;
   }
 }

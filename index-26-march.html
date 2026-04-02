@@ -23,6 +23,12 @@
       rel="stylesheet"
     />
 
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <!-- favicon -->
     <link
       rel="apple-touch-icon"
@@ -339,57 +345,160 @@
       />
 
       <div class="client-list">
-        <div class="marquee">
+        <!-- ROW 1 (Right → Left) -->
+        <div class="marquee marquee-left">
           <div class="marquee-track">
-            <!-- ORIGINAL SET -->
-            <img src="assets/images/clients/adani.png" alt="" />
-            <img src="assets/images/clients/barc.png" alt="" />
-            <img src="assets/images/clients/Deesan Group.png" alt="" />
-            <img src="assets/images/clients/disney.png" alt="" />
+            <!-- ORIGINAL -->
+            <img src="assets/images/clients/adani.png" alt="adani" />
+            <img src="assets/images/clients/barc.png" alt="barc" />
+            <img src="assets/images/clients/deesan-group.png" alt="deesan" />
+            <img src="assets/images/clients/disney.png" alt="disney" />
             <img src="assets/images/clients/fujifilm.png" alt="" />
             <img src="assets/images/clients/gis.png" alt="" />
             <img src="assets/images/clients/hh.png" alt="" />
             <img src="assets/images/clients/hp.png" alt="" />
-            <img src="assets/images/clients/Khinvasara.png" alt="" />
+            <img src="assets/images/clients/khinvasara.png" alt="" />
             <img src="assets/images/clients/madock.png" alt="" />
             <img src="assets/images/clients/maersk.png" alt="" />
             <img src="assets/images/clients/nmims.png" alt="" />
             <img src="assets/images/clients/nns.png" alt="" />
             <img src="assets/images/clients/pearl.png" alt="" />
             <img src="assets/images/clients/prime-video.png" alt="" />
-            <img src="assets/images/clients/Puma.png" alt="" />
+            <img src="assets/images/clients/puma.png" alt="" />
             <img src="assets/images/clients/rbl.png" alt="" />
             <img src="assets/images/clients/sbi.png" alt="" />
-            <img src="assets/images/clients/star-air.png" alt="" />
+            <img src="assets/images/clients/star-air-1.png" alt="" />
             <img src="assets/images/clients/t-series.png" alt="" />
-            <img src="assets/images/clients/Zomato.png" alt="" />
+            <img src="assets/images/clients/zomato.png" alt="" />
 
-            <!-- DUPLICATE SET (important for loop) -->
-            <img src="assets/images/clients/adani.png" alt="" />
-            <img src="assets/images/clients/barc.png" alt="" />
-            <img src="assets/images/clients/Deesan Group.png" alt="" />
-            <img src="assets/images/clients/disney.png" alt="" />
+            <!-- DUPLICATE -->
+            <!-- same again -->
+          </div>
+        </div>
+
+        <!-- ROW 2 (Left → Right) -->
+        <div class="marquee marquee-right">
+          <div class="marquee-track">
+            <img src="assets/images/clients/adani.png" alt="adani" />
+            <img src="assets/images/clients/barc.png" alt="barc" />
+            <img src="assets/images/clients/deesan-group.png" alt="deesan" />
+            <img src="assets/images/clients/disney.png" alt="disney" />
             <img src="assets/images/clients/fujifilm.png" alt="" />
             <img src="assets/images/clients/gis.png" alt="" />
             <img src="assets/images/clients/hh.png" alt="" />
             <img src="assets/images/clients/hp.png" alt="" />
-            <img src="assets/images/clients/Khinvasara.png" alt="" />
+            <img src="assets/images/clients/khinvasara.png" alt="" />
             <img src="assets/images/clients/madock.png" alt="" />
             <img src="assets/images/clients/maersk.png" alt="" />
             <img src="assets/images/clients/nmims.png" alt="" />
             <img src="assets/images/clients/nns.png" alt="" />
             <img src="assets/images/clients/pearl.png" alt="" />
             <img src="assets/images/clients/prime-video.png" alt="" />
-            <img src="assets/images/clients/Puma.png" alt="" />
+            <img src="assets/images/clients/puma.png" alt="" />
             <img src="assets/images/clients/rbl.png" alt="" />
             <img src="assets/images/clients/sbi.png" alt="" />
-            <img src="assets/images/clients/star-air.png" alt="" />
+            <img src="assets/images/clients/star-air-1.png" alt="" />
             <img src="assets/images/clients/t-series.png" alt="" />
-            <img src="assets/images/clients/Zomato.png" alt="" />
+            <img src="assets/images/clients/zomato.png" alt="" />
           </div>
         </div>
       </div>
     </section>
+
+    <!-- stats section -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3 class="counter" data-target="300">0+</h3>
+          <h4>Event Liftoffs</h4>
+          <p>And 3,000+ coffees to execute those liftoffs.</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="30">0+</h3>
+          <h4>Clients</h4>
+          <p>And avoided 30+ collisions</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="300">0+</h3>
+          <h4>Engagements</h4>
+          <p>And 3000+ designs changed</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="5">0+</h3>
+          <h4>Overseas Projects</h4>
+          <p>And 50+ sleepless nights to success</p>
+        </div>
+      </div>
+
+      <div class="stats-message">Yet, 0 aliens encountered!</div>
+    </section>
+
+    <!-- ask section -->
+    <section class="ask-section">
+      <!-- Background -->
+      <img src="assets/images/ask_question_full_image.png" class="ask-bg" />
+
+      <!-- Telephone -->
+      <img src="assets/images/telephone.png" class="telephone" />
+
+      <!-- Left Content -->
+      <div class="left-content">
+        <div class="telepathy-wrapper">
+          <div class="telepathy-text">
+            Because we Don't Communicate Telepathically
+          </div>
+
+          <img src="assets/images/professer.png" class="professor" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <!-- Background -->
+      <img src="assets/images/footer-bg.png" class="footer-bg" />
+
+      <!-- Overlay Content -->
+      <div class="footer-content">
+        <!-- Right Side Links -->
+        <div class="footer-links">
+          <a href="#">ABOUT US</a>
+          <a href="#">SERVICES</a>
+          <a href="#">CONTACT US</a>
+
+          <!-- Social Icons -->
+          <div class="socials">
+            <a
+              href="https://in.linkedin.com/company/chronicleventuresindia"
+              target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.facebook.com/Chronicleventures" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/chronicleventures/"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+
+          <!-- Bottom -->
+          <div class="footer-bottom">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Conditions</a>
+            <p>All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="footer-mob">
+      <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Conditions</a>
+            <p>All Rights Reserved.</p>
+    </div>
 
     <!-- Javascript -->
     <script src="assets/js/script-26-march.js"></script>

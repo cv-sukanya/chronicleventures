@@ -519,7 +519,8 @@ body {
   position: absolute;
   top: 60%;
   left: 50%;
-  width: 90px;
+  /* width: 90px; old */
+  width: 120px;
   transform: translate(-50%, -50%) scale(0.3);
   opacity: 0;
   z-index: 3;

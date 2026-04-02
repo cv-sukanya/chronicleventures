@@ -1956,6 +1956,7 @@ body {
 
   .footer-mob{
     text-align: center;
+    display: block;
   }
   .footer-mob a {
     display: inline-block;

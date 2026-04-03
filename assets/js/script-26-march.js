@@ -114,8 +114,18 @@ if (closeBtn) {
 }
 // CLOSE MENU ON LINK CLICK
 document.querySelectorAll(".side-menu a").forEach(link => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const targetSection = document.querySelector(this.getAttribute("href"));
+
     closeMenu();
+
+    setTimeout(() => {
+      targetSection.scrollIntoView({
+        behavior: "smooth"
+      });
+    }, 400);
   });
 });
 
@@ -469,4 +479,26 @@ gsap.to(".left-content", {
     end: "top -10%",
     scrub: 3
   }
+});
+
+
+// footer links 
+document.querySelectorAll(".footer a[href^='#']").forEach(link => {
+  link.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href");
+
+    // ignore empty or #
+    if (targetId === "#" || targetId === "") return;
+
+    const targetSection = document.querySelector(targetId);
+
+    if (!targetSection) return;
+
+    e.preventDefault();
+
+    targetSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
 });

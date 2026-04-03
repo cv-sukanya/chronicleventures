@@ -4,6 +4,20 @@
 // const lenis = new Lenis({
 //   smooth: true
 // });
+
+// preloader 
+  window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+
+    preloader.style.opacity = "0";
+    preloader.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500);
+  });
+
+
 const lenis = new Lenis({
   smoothWheel: true
 });

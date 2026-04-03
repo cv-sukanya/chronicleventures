@@ -26,6 +26,42 @@ body {
 
 }
 
+/* PRELOADER FULL SCREEN */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000; /* change as per your theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* LOGO */
+.loader-logo {
+  width: 120px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* ANIMATION */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
 #space-canvas {
   position: fixed;
   top: 0;
@@ -37,7 +73,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-  position:absolute;
+  position: absolute;
   width: 100%;
   top: 0;
   padding: 40px 40px;
@@ -159,7 +195,7 @@ body {
   }
 
   .nav-center img {
-    height: 40px;
+    height: 60px;
   }
 
   .nav-right button a {
@@ -517,7 +553,7 @@ body {
 
 .about .center-star {
   position: absolute;
-  top: 60%;
+  top: 58%;
   left: 50%;
   /* width: 90px; old */
   width: 120px;
@@ -871,15 +907,15 @@ body {
 
   /* LEFT GREEN STAR */
   .g1 {
-    top: 50%;
-    left: -10%;
+    top: 55%;
+    left: 0%;
     transform: translate(-20%, -50%);
   }
 
   /* RIGHT GREEN STAR */
   .g2 {
     top: 80%;
-    right: 10%;
+    right: 0%;
     transform: translate(20%, -50%);
   }
 }
@@ -912,15 +948,15 @@ body {
 
   /* LEFT GREEN STAR */
   .g1 {
-    top: 40%;
-    left: -15%;
+    top: 45%;
+    left: 2%;
     transform: translate(-20%, -50%);
   }
 
   /* RIGHT GREEN STAR */
   .g2 {
     top: 80%;
-    right: 20%;
+    right: 0%;
     transform: translate(20%, -50%);
   }
 }
@@ -1179,7 +1215,7 @@ body {
 }
 
 .why-us h2 {
-  font-size: clamp(30px, 12vw, 150px);
+  font-size: clamp(30px, 15vw, 150px);
   color: var(--bold-color);
   letter-spacing: 3px;
   font-weight: 300;
@@ -1220,7 +1256,7 @@ body {
 }
 
 .why-us .wu-content {
-  padding: 30px 40px;
+  padding: 40px 40px;
   text-align: center;
   /* line-height: 1; */
 
@@ -1228,7 +1264,7 @@ body {
   /* visible area */
   overflow: hidden;
   position: relative;
-  margin-top: 30px;
+  margin-top: 80px;
 
   width: 100%;
   max-width: 100%;
@@ -1383,8 +1419,8 @@ body {
     padding-top: 30px;
   }
   .why-us .wu-star {
-    top: 12%;
-    left: 35%;
+    top: 10%;
+    left: 30%;
     z-index: 3;
   }
   .why-us h2{
@@ -1618,8 +1654,8 @@ body {
   background:rgba(255,255,255,0.05);
   padding: 18px 20px;
   border-radius: 12px;
-  font-size: clamp(58px, 2vw, 52px);
-  font-weight: 600;
+  font-size: clamp(48px, 2vw, 52px);
+  font-weight: 500;
   letter-spacing: 2px;
   color: var(--bold-color);
 }
@@ -1817,15 +1853,15 @@ body {
 /* Links */
 .footer-links {
   position: absolute;
-  right: 50px;
+  right: 80px;
   top: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .footer-links a {
-  color: #39ff14;
+  color: var(--bold-color);
   font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
@@ -1855,7 +1891,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 25px;
 }
 .socials a:hover{
   background-color: var(--bold-color);
@@ -1865,14 +1901,12 @@ body {
   text-align: right;
   font-size: 1rem;
   margin-top: 20px;
-  
-  
 }
 
 .footer-bottom a {
   margin: 0;
   color: #39ff14;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-decoration: none;
   font-weight: 100;
   display:flex;

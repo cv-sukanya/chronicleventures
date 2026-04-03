@@ -51,6 +51,11 @@
   </head>
 
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <img src="assets/images/logo/logo-cv.png" alt="Logo" class="loader-logo" />
+    </div>
+
     <canvas id="space-canvas"></canvas>
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -71,8 +76,8 @@
 
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <!-- <li><a href="#projects">Projects</a></li> -->
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -109,7 +114,7 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="about" id="about">
+    <section class="about">
       <div class="curve">
         <div class="curve-glow"></div>
       </div>
@@ -175,7 +180,7 @@
     </section>
 
     <!-- why us? -->
-    <section class="why-us">
+    <section class="why-us" id="why-us">
       <div class="wu-container">
         <img
           src="assets/images/fill_purple_star.png"
@@ -256,7 +261,7 @@
     </section>
 
     <!-- what we do -->
-    <section class="wwd">
+    <section class="wwd" id="services">
       <div class="wwd-container">
         <h2>
           What We
@@ -456,7 +461,7 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
       <!-- Background -->
       <img src="assets/images/footer-bg.png" class="footer-bg" />
 
@@ -464,9 +469,9 @@
       <div class="footer-content">
         <!-- Right Side Links -->
         <div class="footer-links">
-          <a href="#">ABOUT US</a>
-          <a href="#">SERVICES</a>
-          <a href="#">CONTACT US</a>
+          <a href="#why-us">ABOUT US</a>
+          <a href="#services">SERVICES</a>
+          <a href="#contact">CONTACT US</a>
 
           <!-- Social Icons -->
           <div class="socials">
@@ -496,8 +501,8 @@
     </footer>
     <div class="footer-mob">
       <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Conditions</a>
-            <p>All Rights Reserved.</p>
+      <a href="#">Terms and Conditions</a>
+      <p>All Rights Reserved.</p>
     </div>
 
     <!-- Javascript -->

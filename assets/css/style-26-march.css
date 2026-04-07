@@ -1045,8 +1045,9 @@ body {
 
 @media (max-width: 480px){
   .wwd .wwd-container {
-  padding: 10px 50px;
+  padding: 30px 50px;
 }
+
 }
 .services {
   width: 100%;
@@ -1556,8 +1557,8 @@ body {
 
   .wu-item {
     max-width: 100%;
-    font-size: 14px;
-    /* line-height: 1.4; */
+    font-size: 20px;
+    line-height: 1.2;
   }
 }
 

@@ -1444,7 +1444,7 @@ body {
 
   .why-us .wu-star {
     top: 15%;
-    left: 38%;
+    left: 32%;
     z-index: 3;
   }
 
@@ -1477,6 +1477,9 @@ body {
 }
 
 @media (max-width: 480px) {
+  .why-us{
+    margin: 100px 0;
+  }
   .why-us .wu-content {
     height: 400px;
     margin-top: 50px;
@@ -1530,7 +1533,7 @@ body {
   }
 
   .why-us .wu-star {
-    top: 10%;
+    top: 12%;
     left: 30%;
     z-index: 3;
   }

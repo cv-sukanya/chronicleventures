@@ -455,6 +455,7 @@ gsap.registerPlugin(ScrollTrigger);
 // TELEPHONE (Right → Center)
 gsap.to(".telephone", {
   x: "-80vw",
+  
   ease: "power2.out",
   scrollTrigger: {
     trigger: ".ask-section",
@@ -464,20 +465,65 @@ gsap.to(".telephone", {
   }
 });
 
-gsap.to(".left-content", {
-  x: () => {
-    const text = document.querySelector(".telepathy-text");
-    const textWidth = text.offsetWidth;
-    const screenWidth = window.innerWidth;
+gsap.timeline({ repeat: -1, repeatDelay: 1 })  
+  .to(".telephone", {
+    rotation: -14,
+    duration: 0.08,
+    ease: "power1.inOut"
+  })
+  .to(".telephone", {
+    rotation: -6,
+    duration: 0.08,
+    ease: "power1.inOut"
+  })
+  .to(".telephone", {
+    rotation: -14,
+    duration: 0.08
+  })
+  .to(".telephone", {
+    rotation: -8,
+    duration: 0.08
+  })
+  .to(".telephone", {
+    rotation: -12,
+    duration: 0.08
+  })
+  .to(".telephone", {
+    rotation: -10, // reset to original
+    duration: 0.1
+  });
+  
 
-    return screenWidth - textWidth; // final alignment
-  },
-  ease: "power3.out",
+const text = document.querySelector(".telepathy-text");
+
+function getMoveDistance() {
+  const rect = text.getBoundingClientRect();
+  const maxMove = window.innerWidth - rect.right;
+
+  return Math.min(maxMove, 0); // 🔥 never push beyond screen
+}
+
+gsap.to(".left-content", {
+  x: getMoveDistance,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".ask-section",
+    start: "top 80%",
+    end: "top -10%", // 🔥 key fix
+    scrub: 4,
+    invalidateOnRefresh: true
+  }
+});
+
+gsap.to(".professor", {
+  x: 80,   // small movement only
+  y: -10,  // slight upward float
+  ease: "none",
   scrollTrigger: {
     trigger: ".ask-section",
     start: "top 90%",
-    end: "top -10%",
-    scrub: 3
+    end: "top -20%",
+    scrub: 4   // 👈 slower = smoother = less aggressive
   }
 });
 

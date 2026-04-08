@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Chronicle Ventures</title>
+    <title>Chronicle Ventures - OLD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
@@ -11,6 +11,8 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://assets.codepen.io/16327/CustomWiggle.min.js"></script>
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.6/bundled/lenis.min.js"></script>
@@ -23,20 +25,48 @@
       rel="stylesheet"
     />
 
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/android-chrome-512x512.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon/android-chrome-512x512.png"
+    />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
 
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <img src="assets/images/logo/logo-cv.png" alt="Logo" class="loader-logo" />
+    </div>
+
     <canvas id="space-canvas"></canvas>
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="nav-left menu-btn">MENU</div>
       <div class="nav-center">
-        <img src="assets/images/logo/logo.png" alt="Chronicle Ventures Logo" />
+        <img
+          src="assets/images/logo/chronicle-ventures.png"
+          alt="Chronicle Ventures Logo"
+        />
       </div>
       <div class="nav-right">
         <button><a href="#">Contact Us</a></button>
@@ -47,89 +77,451 @@
       <div class="close-btn">✕</div>
 
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#">Projects</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <!-- <li><a href="#projects">Projects</a></li> -->
         <li><a href="#services">Services</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
+
+      
     </div>
 
     <!-- HERO SECTION -->
-    <section class="hero">
-      <h1 class="hero-text">CHRONICLE VENTURES</h1>
+    <section class="hero" id="home">
+      <div class="space-bg">
+        <img src="assets/images/astronaut.png" class="space obj1" />
+        <img src="assets/images/ASTEROIDS_1.png" class="space obj2" />
+        <img src="assets/images/asteroid.png" class="space obj3" />
+      </div>
 
-      <img src="assets/images/robot-2.png" alt="robot-1" class="hero-obj" />
+      <div class="marquee">
+        <div class="marquee-track">
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+          <h1 class="hero-text">CHRONICLE VENTURES</h1>
+        </div>
+      </div>
+    </section>
 
-      <!-- add left arrow here  -->
+    <!-- One line -->
+    <section class="cta-line">
+      <h2>
+        <span class="left">LET'S MAKE</span>
+        <span class="right">IT HAPPEN</span>
+      </h2>
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="about" id="about">
+    <section class="about">
       <div class="curve">
         <div class="curve-glow"></div>
       </div>
 
+      <img src="assets/images/star.png" class="center-star" />
+
       <div class="content">
-        <h2>ABOUT</h2>
-        <p class="about-text">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti,
-          saepe. <br />
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore,
-          suscipit rem tenetur voluptate eveniet nulla blanditiis quaerat quidem
-          sequi dolores, aliquid, impedit dignissimos sapiente sed culpa
-          voluptates hic voluptatem. Quidem?
+        <p class="about-text">WE ARE AN</p>
+        <p class="about-text-green">
+          INTEGRATED MARKETING COMMUNICATIONS AGENCY
         </p>
+        <p class="about-text">WHO KNOWS THE DIFFERENCE BETWEEN</p>
+        <p class="about-text-green">ILLUSSION, DELUSION AND HALLUCINATION.</p>
+      </div>
+
+      <img src="assets/images/asteroid.png" class="floating-obj a-obj1" />
+      <img src="assets/images/ASTEROIDS_1.png" class="floating-obj a-obj2" />
+      <img src="assets/images/ASTEROIDS_4.png" class="floating-obj a-obj3" />
+    </section>
+
+    <!-- explore section -->
+    <section class="explore">
+      <!-- Random Asteroids -->
+      <div class="asteroids">
+        <img src="assets/images/ASTEROIDS_1.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_6.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_4.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_3.png" class="stone" />
+
+        <img src="assets/images/ASTEROIDS_2.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_5.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_4.png" class="stone" />
+        <img src="assets/images/ASTEROIDS_3.png" class="stone" />
+      </div>
+
+      <!-- White Star -->
+      <img
+        src="assets/images/double_star_white.png"
+        class="e-star white-star"
+      />
+
+      <!-- Green Stars (wrapped for rotation) -->
+      <div class="star-wrap g1">
+        <img
+          src="assets/images/hollow_green_star.png"
+          class="e-star green-star"
+        />
+      </div>
+
+      <div class="star-wrap g2">
+        <img
+          src="assets/images/hollow_green_star.png"
+          class="e-star green-star"
+        />
+      </div>
+
+      <!-- TEXT BELOW -->
+      <h2 class="explore-text">
+        Explore New <br />
+        Dimensions in <br />
+        <span id="changing-word">Marketing</span>
+      </h2>
+    </section>
+
+    <!-- why us? -->
+    <section class="why-us" id="why-us">
+      <div class="wu-container">
+        <img
+          src="assets/images/fill_purple_star.png"
+          alt="purple-star"
+          class="wu-star"
+        />
+        <h2>WHY US?</h2>
+
+        <div class="wu-content">
+          <div class="wu-track">
+            <div class="wu-item">
+              <p>
+                we <span>LISTEN</span>, <span>THINK</span>,
+                <span>OVERTHINK</span>, and sometimes <span>OVERTHINK</span>!
+                Aligning <span>STRATEGIES</span> to
+                <span>CREATIVE GENIUS</span> TURNING <span>OOH</span> to
+                <span>Ooooohs</span>
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                And turning ordinary moments into
+                <span>UNFORGETABLE EXPERIENCES</span>
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                We execute work that promises <span>PRECISION</span>.
+                <span>NOTHING</span> HOLDS US BACK — except gravity, perhaps!
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                We understand what <span>NOTHING</span> Going
+                <span>BEYOND</span> our axis, creating impacts as
+                <span>BIG</span> as the <span>big bang</span>!
+              </p>
+            </div>
+
+            <!-- 🔁 DUPLICATE SAME CONTENT AGAIN -->
+            <div class="wu-item">
+              <p>
+                we <span>LISTEN</span>, <span>THINK</span>,
+                <span>OVERTHINK</span>, and sometimes <span>OVERTHINK</span>!
+                Aligning <span>STRATEGIES</span> to
+                <span>CREATIVE GENIUS</span> TURNING <span>OOH</span> to
+                <span>Ooooohs</span>
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                And turning ordinary moments into
+                <span>UNFORGETABLE EXPERIENCES</span>
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                We execute work that promises <span>PRECISION</span>.
+                <span>NOTHING</span> HOLDS US BACK — except gravity, perhaps!
+              </p>
+            </div>
+
+            <div class="wu-item">
+              <p>
+                We understand what <span>NOTHING</span> Going
+                <span>BEYOND</span> our axis, creating impacts as
+                <span>BIG</span> as the <span>big bang</span>!
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
-      <!-- stones -->
-      <div class="stones">
-        <img src="assets/images/Asteroid.png" class="stone s1" alt="s1" />
-        <img src="assets/images/ASTEROIDS_1.png" class="stone s2" alt="s2" />
-        <img src="assets/images/ASTEROIDS_2.png" class="stone s3" alt="s3" />
-        <img src="assets/images/ASTEROIDS_3.png" class="stone s4" alt="s4" />
-        <img src="assets/images/ASTEROIDS_4.png" class="stone s5" alt="s5" />
+    <!-- what we do -->
+    <section class="wwd" id="services">
+      <div class="wwd-container">
+        <h2>
+          What We
+          <span class="do-wrapper">
+            <img
+              src="assets/images/green_star.png"
+              class="star-bg"
+              alt="star"
+            />
+            Do?
+          </span>
+        </h2>
       </div>
 
-      <div class="s-container">
-        <h2>WHAT WE DO ?</h2>
-
-        <div class="service-card">
-          <h3>Ip conceptualisation & Execution</h3>
-          <!-- <p>We create futuristic, high-converting designs.</p> -->
+      <!-- SERVICES -->
+      <div class="services">
+        <div class="service left">
+          <div class="inner">
+            <div class="content">IP Conceptualisation & Execution</div>
+            <img
+              src="assets/images/IP_and_Concept.png"
+              class="astro"
+              alt="IP Conceptualisation & Execution"
+            />
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>Branding & Fabrication</h3>
-          <!-- <p>Fast, scalable, modern websites.</p> -->
+        <div class="service right">
+          <div class="inner">
+            <img
+              src="assets/images/Photo_Video.png"
+              class="astro"
+              alt="Photo & Video Production"
+            />
+            <div class="content">Photo & Video Production</div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>Talent Management</h3>
-          <!-- <p>Strong identity for bold brands.</p> -->
+        <div class="service left">
+          <div class="inner">
+            <div class="content">PR & Media Buying</div>
+            <img
+              src="assets/images/PR_Media.png"
+              class="astro"
+              alt="PR & Media Buying"
+            />
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>Photo & Video Production</h3>
-          <!-- <p>Rank higher, grow faster.</p> -->
+        <div class="service right">
+          <div class="inner">
+            <img
+              src="assets/images/Branding.png"
+              class="astro"
+              alt="Branding & Fabrication"
+            />
+            <div class="content">Branding & Fabrication</div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>PR & Media Buying</h3>
-          <!-- <p>Rank higher, grow faster.</p> -->
+        <div class="service left">
+          <div class="inner">
+            <div class="content">Talent Management</div>
+            <img
+              src="assets/images/Talent_Management.png"
+              class="astro"
+              alt="Talent Management"
+            />
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- our client -->
+    <section class="clients">
+      <img
+        src="assets/images/vector-star-purple.png"
+        class="oc-star-left"
+        alt="vector-star"
+      />
+      <h2>Our Clients</h2>
+      <img
+        src="assets/images/fill_purple_star.png"
+        class="oc-star-right"
+        alt="purple-star"
+      />
 
-    <!-- change the color of service section same as about section -->
+      <div class="client-list">
+        <!-- ROW 1 (Right → Left) -->
+        <div class="marquee marquee-left">
+          <div class="marquee-track">
+            <!-- ORIGINAL -->
+            <img src="assets/images/clients/adani.png" alt="adani" />
+            <img src="assets/images/clients/barc.png" alt="barc" />
+            <img src="assets/images/clients/deesan-group.png" alt="deesan" />
+            <img src="assets/images/clients/disney.png" alt="disney" />
+            <img src="assets/images/clients/fujifilm.png" alt="" />
+            <img src="assets/images/clients/gis.png" alt="" />
+            <img src="assets/images/clients/hh.png" alt="" />
+            <img src="assets/images/clients/hp.png" alt="" />
+            <img src="assets/images/clients/khinvasara.png" alt="" />
+            <img src="assets/images/clients/madock.png" alt="" />
+            <img src="assets/images/clients/maersk.png" alt="" />
+            <img src="assets/images/clients/nmims.png" alt="" />
+            <img src="assets/images/clients/nns.png" alt="" />
+            <img src="assets/images/clients/pearl.png" alt="" />
+            <img src="assets/images/clients/prime-video.png" alt="" />
+            <img src="assets/images/clients/puma.png" alt="" />
+            <img src="assets/images/clients/rbl.png" alt="" />
+            <img src="assets/images/clients/sbi.png" alt="" />
+            <img src="assets/images/clients/star-air-1.png" alt="" />
+            <img src="assets/images/clients/t-series.png" alt="" />
+            <img src="assets/images/clients/zomato.png" alt="" />
+
+            <!-- DUPLICATE -->
+            <!-- same again -->
+          </div>
+        </div>
+
+        <!-- ROW 2 (Left → Right) -->
+        <div class="marquee marquee-right">
+          <div class="marquee-track">
+            <img src="assets/images/clients/adani.png" alt="adani" />
+            <img src="assets/images/clients/barc.png" alt="barc" />
+            <img src="assets/images/clients/deesan-group.png" alt="deesan" />
+            <img src="assets/images/clients/disney.png" alt="disney" />
+            <img src="assets/images/clients/fujifilm.png" alt="" />
+            <img src="assets/images/clients/gis.png" alt="" />
+            <img src="assets/images/clients/hh.png" alt="" />
+            <img src="assets/images/clients/hp.png" alt="" />
+            <img src="assets/images/clients/khinvasara.png" alt="" />
+            <img src="assets/images/clients/madock.png" alt="" />
+            <img src="assets/images/clients/maersk.png" alt="" />
+            <img src="assets/images/clients/nmims.png" alt="" />
+            <img src="assets/images/clients/nns.png" alt="" />
+            <img src="assets/images/clients/pearl.png" alt="" />
+            <img src="assets/images/clients/prime-video.png" alt="" />
+            <img src="assets/images/clients/puma.png" alt="" />
+            <img src="assets/images/clients/rbl.png" alt="" />
+            <img src="assets/images/clients/sbi.png" alt="" />
+            <img src="assets/images/clients/star-air-1.png" alt="" />
+            <img src="assets/images/clients/t-series.png" alt="" />
+            <img src="assets/images/clients/zomato.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- stats section -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3 class="counter" data-target="300">0+</h3>
+          <h4>Event Liftoffs</h4>
+          <p>And 3,000+ coffees to execute those liftoffs.</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="30">0+</h3>
+          <h4>Clients</h4>
+          <p>And avoided 30+ collisions</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="300">0+</h3>
+          <h4>Engagements</h4>
+          <p>And 3000+ designs changed</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="counter" data-target="5">0+</h3>
+          <h4>Overseas Projects</h4>
+          <p>And 50+ sleepless nights to success</p>
+        </div>
+      </div>
+
+      <div class="stats-message">Yet, 0 aliens encountered!</div>
+    </section>
+
+    <!-- ask section -->
+    <section class="ask-section">
+      <!-- Background -->
+      <img src="assets/images/ask_question_full_image.png" class="ask-bg" />
+
+      <!-- Telephone -->
+      <img src="assets/images/telephone.png" class="telephone" />
+
+      <!-- Left Content -->
+      <div class="left-content">
+        <div class="telepathy-wrapper">
+          <div class="telepathy-text">
+            Because we Don't Communicate Telepathically
+          </div>
+
+          <img src="assets/images/professer.png" class="professor" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <!-- Background -->
+      <img src="assets/images/footer-bg.png" class="footer-bg" />
+
+      <!-- Overlay Content -->
+      <div class="footer-content">
+        <!-- Right Side Links -->
+
+        <!-- added now -->
+        
+
+        <div class="footer-links">
+          <a href="#why-us">ABOUT US</a>
+          <a href="#services">SERVICES</a>
+          <a href="#contact">CONTACT US</a>
+
+          <!-- Social Icons -->
+          <div class="socials">
+            <a
+              href="https://in.linkedin.com/company/chronicleventuresindia"
+              target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.facebook.com/Chronicleventures" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/chronicleventures/"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+
+          <!-- Bottom -->
+          <div class="footer-bottom">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Conditions</a>
+            <p>All Rights Reserved.</p>
+          </div>
+        </div>
+
+        <div class="footer-stones">
+          <img src="assets/images/ASTEROIDS_1.png" class="fstone1" alt="stone">
+          <img src="assets/images/ASTEROIDS_4.png" class="fstone2" alt="stone">
+          <img src="assets/images/ASTEROIDS_3.png" class="fstone3" alt="stone">
+        </div>
+
+      </div>
+    </footer>
+    <div class="footer-mob">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms and Conditions</a>
+      <p>All Rights Reserved.</p>
+    </div>
+
     <!-- Javascript -->
     <script src="assets/js/script.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="assets/js/space.js"></script>
+    <script src="assets/js/space-26-march.js"></script>
   </body>
 </html>

@@ -242,6 +242,7 @@ body {
   height: auto;
   position: relative;
   overflow-x: hidden;
+   overflow-y: clip;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -252,12 +253,22 @@ body {
 
 /* Marquee fixed to bottom */
 .marquee {
-  position: relative;
-  width: 100%;
+  /* position: relative;
+  width: 100%; */
 
+position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0; /* desktop default */
+  z-index: 3;
+  height: fit-content;
 
 }
-
+@media (hover: none) and (pointer: coarse) {
+  .marquee {
+    bottom: 40px; /* push up to avoid cut */
+  }
+}
 /* Track */
 .marquee-track {
   display: flex;

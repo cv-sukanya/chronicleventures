@@ -272,6 +272,71 @@ function changeWord() {
 // change every 2 seconds
 setInterval(changeWord, 2000);
 
+// Buzz image
+
+// old code -----
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.fromTo(".buzz-img",
+  {
+    x: 900,   // start from right
+  },
+  {
+    x: -800,  // move to left
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".buzz-section",
+      start: "top 100%",
+      end: "top -70%",
+      scrub: true, 
+    }
+  }
+);
+
+
+// new code (stop at left in mobile) -----
+// gsap.registerPlugin(ScrollTrigger);
+
+// function animateBuzz() {
+//   const isMobile = window.innerWidth <= 768;
+//   const buzz = document.querySelector(".buzz-img");
+
+//   let moveRight = isMobile ? 200 : 900;
+
+//   let moveLeft;
+
+//   if (isMobile) {
+//     // Calculate exact stop position so it touches left edge
+//     const imgWidth = buzz.offsetWidth;
+//     const screenWidth = window.innerWidth;
+
+//     moveLeft = -(imgWidth - screenWidth); 
+//   } else {
+//     moveLeft = -800; // keep your desktop behavior
+//   }
+
+//   gsap.fromTo(".buzz-img",
+//     {
+//       x: moveRight,
+//     },
+//     {
+//       x: moveLeft,
+//       ease: "none",
+//       scrollTrigger: {
+//         trigger: ".buzz-section",
+//         start: "top 100%",
+//         end: "top 50%",
+//         scrub: true,
+//       }
+//     }
+//   );
+// }
+
+// animateBuzz();
+
+
+
+
 
 
 // What we do 

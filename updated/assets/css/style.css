@@ -454,7 +454,7 @@ body {
 }
 
 .cta-line h2 {
-  font-size: clamp(30px, 10vw, 120px);
+  font-size: clamp(30px, 10vw, 110px);
   color: var(--bold-color);
   display: flex;
   letter-spacing: 5px;
@@ -1013,7 +1013,27 @@ body {
     transform: translate(20%, -50%);
   }
 }
-
+@media (min-width: 768px) and (max-width: 1024px) {
+  .explore-text {
+    margin: 150px 0;
+    padding: 0 20px;
+    font-size: 3.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .center-star {
+    z-index: 4;
+  }
+  .explore-text {
+    margin: 150px 0;
+    padding: 0 20px;
+    font-size: 5.5rem;
+  }
+  .white-star {
+    top: 58%;
+    left: 75%;
+  }
+}
 
 /* what we do section */
 .wwd {
@@ -1028,7 +1048,7 @@ body {
 }
 
 .wwd h2 {
-  font-size: clamp(30px, 12vw, 150px);
+  font-size: clamp(30px, 11vw, 150px);
   letter-spacing: 3px;
   font-weight: 300;
   position: relative;

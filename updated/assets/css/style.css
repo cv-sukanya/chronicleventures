@@ -470,12 +470,12 @@ body {
 
 /* initial state */
 .cta-line .left {
-  transform: translateX(-180%);
+  transform: translateX(-2%);
   opacity: 1;
 }
 
 .cta-line .right {
-  transform: translateX(180%);
+  transform: translateX(2%);
   opacity: 1;
 }
 

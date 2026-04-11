@@ -457,7 +457,7 @@ body {
   font-size: clamp(30px, 10vw, 110px);
   color: var(--bold-color);
   display: flex;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   gap: 30px;
   /* overflow: hidden; */
 
@@ -470,12 +470,12 @@ body {
 
 /* initial state */
 .cta-line .left {
-  transform: translateX(-2%);
+  transform: translateX(-180%);
   opacity: 1;
 }
 
 .cta-line .right {
-  transform: translateX(2%);
+  transform: translateX(180%);
   opacity: 1;
 }
 
@@ -508,7 +508,11 @@ body {
     letter-spacing: 1px;
   }
 }
-
+@media (max-width: 1024px) {
+  .cta-line h2{
+    font-size: 12px;
+  }
+}
 
 /* About section */
 .about {

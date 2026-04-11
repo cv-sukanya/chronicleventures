@@ -1,6 +1,11 @@
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-   
+  
+  .center-star{
+    z-index: 4;
+  }
+  .explore-text{
+    font-size: 7rem;
+  }
 
     /* Footer  */
   .fipad {

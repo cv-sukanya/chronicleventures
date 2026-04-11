@@ -510,9 +510,9 @@ body {
 }
 @media (max-width: 1024px) {
   .cta-line h2{
-    font-size: 5rem;
+    font-size: 4rem;
   }
-  .cta-line .left {
+  /* .cta-line .left {
   transform: translateX(-2%);
   opacity: 1;
 }
@@ -520,7 +520,7 @@ body {
 .cta-line .right {
   transform: translateX(2%);
   opacity: 1;
-}
+} */
 }
 
 /* About section */

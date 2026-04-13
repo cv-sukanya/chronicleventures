@@ -5,6 +5,10 @@
 //   smooth: true
 // });
 
+// ✅ Disable heavy animations on touch devices
+if (window.innerWidth < 1024) {
+  ScrollTrigger.getAll().forEach(t => t.kill());
+}
 // preloader 
   window.addEventListener("load", function () {
     const preloader = document.getElementById("preloader");

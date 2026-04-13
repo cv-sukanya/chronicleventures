@@ -40,7 +40,7 @@ gsap.to(".about-text", {
     trigger: ".about",
     start: "top 70%",
     end: "top 20%",
-    scrub: 0.5
+    scrub: true
   }
 });
 
@@ -290,7 +290,7 @@ gsap.fromTo(".buzz-img",
       trigger: ".buzz-section",
       start: "top 100%",
       end: "top -70%",
-      scrub: 0.5, 
+      scrub: true, 
     }
   }
 );
@@ -469,7 +469,7 @@ gsap.fromTo(".why-us h2",
       trigger: ".why-us",
       start: "top 80%",   // when section enters
       end: "top 30%",     // when near center
-      scrub: 0.5         // 🔥 THIS makes it reversible on scroll
+      scrub: true         // 🔥 THIS makes it reversible on scroll
     }
   }
 );

@@ -279,10 +279,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.fromTo(".buzz-img",
   {
-    x: 900,   // start from right
+    x: 150,   // start from right
   },
   {
-    x: -800,  // move to left
+    x: -500,  // move to left
     ease: "none",
     scrollTrigger: {
       trigger: ".buzz-section",
@@ -292,27 +292,6 @@ gsap.fromTo(".buzz-img",
     }
   }
 );
-
-
-// gsap.registerPlugin(ScrollTrigger);
-
-// const isMobile = window.innerWidth <= 768;
-
-// gsap.fromTo(".buzz-img",
-//   {
-//     x: isMobile ? 200 : 900,
-//   },
-//   {
-//     x: isMobile ? -300 : -800,
-//     ease: "none",
-//     scrollTrigger: {
-//       trigger: ".buzz-section",
-//       start: isMobile ? "top 95%" : "top 110%",
-//       end: isMobile ? "top 20%" : "top -70%",
-//       scrub: true,
-//     }
-//   }
-// );
 
 
 // new code (stop at left in mobile) -----

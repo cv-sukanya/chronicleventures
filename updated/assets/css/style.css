@@ -929,7 +929,7 @@ body {
 }
 
 .buzz-img {
-  width: 1500px;
+  width: 1800px;
   max-width: none;
   /* important for movement */
   position: relative;
@@ -939,7 +939,14 @@ body {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .buzz-img {
-    width: 100%;
+    width: 1100px;
+    transform: translateX(30px);
+    /* smaller shift */
+  }
+}
+@media (max-width: 480px) {
+  .buzz-img {
+    width: 1100px;
     transform: translateX(30px);
     /* smaller shift */
   }

@@ -929,7 +929,7 @@ body {
 }
 
 .buzz-img {
-  width: 1800px;
+  width: 2000px;
   max-width: none;
   /* important for movement */
   position: relative;
@@ -951,6 +951,11 @@ body {
     /* smaller shift */
   }
 }
+/* @media (min-width: 1900px) {
+  .buzz-img {
+    width: 2000px;
+  }
+} */
 
 @media (max-width: 768px) {
   .explore {

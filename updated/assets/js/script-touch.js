@@ -1,28 +1,11 @@
 
+const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-// LENIS SMOOTH SCROLL
+if (!isTouch) {
+  // LENIS SMOOTH SCROLL
 // const lenis = new Lenis({
 //   smooth: true
 // });
-
-// Delay GSAP Animation
-window.addEventListener("load", () => {
-  initAnimations();
-});
-
-// Only animate after hero loads
-const hero = document.querySelector(".hero");
-
-if (hero) {
-  hero.onload = () => initAnimations();
-}
-
-// Disable heavy animations on touch devices:
-const isTouch = window.matchMedia("(pointer: coarse)").matches;
-
-if (isTouch) {
-  ScrollTrigger.getAll().forEach(t => t.kill());
-}
 
 // preloader 
   window.addEventListener("load", function () {
@@ -46,15 +29,9 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Delay hero 
-gsap.from(".hero", {
-  opacity: 0,
-  duration: 1,
-  delay: 0.5
-});
-
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
+
 
 // ABOUT TEXT COLOR
 gsap.to(".about-text", {
@@ -304,10 +281,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.fromTo(".buzz-img",
   {
-    x: 150,   // start from right
+    x: 900,   // start from right
   },
   {
-    x: -500,  // move to left
+    x: -800,  // move to left
     ease: "none",
     scrollTrigger: {
       trigger: ".buzz-section",
@@ -635,3 +612,4 @@ document.querySelectorAll(".footer a[href^='#']").forEach(link => {
     });
   });
 });
+}

@@ -1,3 +1,7 @@
+window.addEventListener("load", () => {
+  initAnimations();
+});
+
 const canvas = document.getElementById("space-canvas");
 
 const scene = new THREE.Scene();

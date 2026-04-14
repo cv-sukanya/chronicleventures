@@ -1767,7 +1767,7 @@ body {
   overflow: hidden;
 
   background: rgba(255, 255, 255, 0.05);
-  padding: 20px 0;
+  padding: 40px 0;
 
   position: relative;
 }
@@ -1782,7 +1782,7 @@ body {
 
 /* LOGOS */
 .client-list .marquee .marquee-track img {
-  height: clamp(30px, 6vw, 80px);
+  height: clamp(30px, 3.5vw, 80px);
   width: auto;
   object-fit: contain;
   opacity: 0.9;

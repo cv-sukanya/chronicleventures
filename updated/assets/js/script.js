@@ -25,16 +25,16 @@ if (isTouch) {
 }
 
 // preloader 
-  window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
+window.addEventListener("load", function () {
+  const preloader = document.getElementById("preloader");
 
-    preloader.style.opacity = "0";
-    preloader.style.transition = "opacity 1s ease";
+  preloader.style.opacity = "0";
+  preloader.style.transition = "opacity 1s ease";
 
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 500);
-  });
+  setTimeout(() => {
+    preloader.style.display = "none";
+  }, 500);
+});
 
 
 const lenis = new Lenis({
@@ -320,7 +320,7 @@ gsap.fromTo(".buzz-img",
       trigger: ".buzz-section",
       start: "top 100%",
       end: "top -70%",
-      scrub: true, 
+      scrub: true,
     }
   }
 );
@@ -368,10 +368,7 @@ gsap.fromTo(".buzz-img",
 
 
 
-
-
-
-// What we do 
+// What we do / Services
 
 // gsap.registerPlugin(ScrollTrigger);
 
@@ -447,12 +444,12 @@ gsap.fromTo(".buzz-img",
 // });
 
 
-
 const services = document.querySelectorAll('.service');
 
 window.addEventListener('scroll', () => {
 
   const windowHeight = window.innerHeight;
+  const isMobile = window.innerWidth <= 768;
 
   services.forEach((service) => {
 
@@ -463,8 +460,12 @@ window.addEventListener('scroll', () => {
     let progress = (windowHeight - rect.top) / windowHeight;
     progress = Math.max(0, Math.min(1, progress));
 
-    // horizontal movement
-    const moveX = (1 - progress) * 120;
+    // ease-out curve to prevent snapping at the end
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    // reduce max movement on mobile
+    const maxMove = isMobile ? 40 : 120;
+    const moveX = (1 - eased) * maxMove;
 
     if (service.classList.contains('left')) {
       service.style.transform = `translateX(${-moveX}px)`;
@@ -473,14 +474,15 @@ window.addEventListener('scroll', () => {
     }
 
     // astro parallax (only desktop)
-    if (window.innerWidth > 768) {
-      let floatY = (progress - 0.5) * 40;
+    if (!isMobile) {
+      let floatY = (eased - 0.5) * 40;
       astro.style.transform = `translateY(${floatY}px)`;
     }
 
   });
 
 });
+
 
 // why us section
 gsap.registerPlugin(ScrollTrigger);
@@ -494,7 +496,7 @@ gsap.fromTo(".why-us h2",
     x: 0,     // move to center
     opacity: 1,
     ease: "power2.out",
-    
+
     scrollTrigger: {
       trigger: ".why-us",
       start: "top 80%",   // when section enters
@@ -504,6 +506,20 @@ gsap.fromTo(".why-us h2",
   }
 );
 
+// why us content
+window.addEventListener("load", () => {
+  const track = document.querySelector(".wu-track");
+  const firstGroup = document.querySelector(".wu-group");
+
+  const height = firstGroup.getBoundingClientRect().height;
+
+  gsap.to(track, {
+    y: -height,
+    duration: 12,
+    ease: "none",
+    repeat: -1
+  });
+});
 
 // static count 
 const counters = document.querySelectorAll('.counter');
@@ -549,7 +565,7 @@ gsap.registerPlugin(ScrollTrigger);
 // TELEPHONE (Right → Center)
 gsap.to(".telephone", {
   x: "-80vw",
-  
+
   ease: "power2.out",
   scrollTrigger: {
     trigger: ".ask-section",
@@ -559,7 +575,7 @@ gsap.to(".telephone", {
   }
 });
 
-gsap.timeline({ repeat: -1, repeatDelay: 1 })  
+gsap.timeline({ repeat: -1, repeatDelay: 1 })
   .to(".telephone", {
     rotation: -14,
     duration: 0.08,
@@ -586,7 +602,7 @@ gsap.timeline({ repeat: -1, repeatDelay: 1 })
     rotation: -10, // reset to original
     duration: 0.1
   });
-  
+
 
 const text = document.querySelector(".telepathy-text");
 

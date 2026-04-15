@@ -485,6 +485,7 @@ body {
   white-space: nowrap;
   /* 👈 prevents breaking */
   will-change: transform;
+  transform: translate3d(0,0,0);
 }
 
 @media (max-width:768px) {
@@ -1070,7 +1071,7 @@ body {
 
 }
 
-/* what we do section */
+/* what we do section / services */
 .wwd {
   position: relative;
   overflow: hidden;
@@ -1426,15 +1427,23 @@ body {
 .wu-track {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 
-  align-items: stretch;
+  /* align-items: stretch; */
   width: 100%;
   max-width: 100%;
 
-  animation: verticalScroll 10s linear infinite;
-}
+  /* animation: verticalScroll 15s linear infinite; */
 
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+.wu-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 0;
+}
 /* INDIVIDUAL ITEMS */
 .wu-item {
   text-align: center;
@@ -1445,6 +1454,11 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
+
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .wu-item p {
@@ -1459,7 +1473,7 @@ body {
 }
 
 /* ANIMATION */
-@keyframes verticalScroll {
+/* @keyframes verticalScroll {
   0% {
     transform: translateY(0%);
   }
@@ -1467,7 +1481,7 @@ body {
   100% {
     transform: translateY(-50%);
   }
-}
+} */
 
 @media (max-width: 1024px) {
   .wu-content {
@@ -1540,7 +1554,7 @@ body {
     width: 100%;
     max-width: 100%;
 
-    animation: verticalScroll 10s linear infinite;
+    /* animation: verticalScroll 10s linear infinite; */
 
 
   }
@@ -1631,7 +1645,7 @@ body {
     width: 100%;
     max-width: 100%;
 
-    animation: verticalScroll 10s linear infinite;
+    /* animation: verticalScroll 10s linear infinite; */
 
 
   }
@@ -1777,7 +1791,9 @@ body {
   align-items: center;
   gap: clamp(40px, 6vw, 120px);
   width: max-content;
-
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* LOGOS */
@@ -2211,13 +2227,13 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 6;
+  z-index: 8;
 }
 
 /* Content */
 .footer-content {
   position: relative;
-  z-index: 5;
+  /* z-index: 9; */
   height: 100%;
   padding: 40px;
   display: flex;
@@ -2233,7 +2249,7 @@ body {
   /* right-side area */
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 4;
 }
 
 /* Individual stones */
@@ -2248,7 +2264,7 @@ body {
   top: 650%;
   right: 10%;
   width: 150px;
-  z-index: 1;
+  z-index: 4;
   animation: float1 5s ease-in-out infinite;
 }
 
@@ -2325,7 +2341,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  z-index: 4;
+  z-index: 9;
 }
 
 .footer-links a {

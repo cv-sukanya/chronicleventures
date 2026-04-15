@@ -160,22 +160,29 @@ const cta = document.querySelector(".cta-line");
 const left = document.querySelector(".left");
 const right = document.querySelector(".right");
 
-window.addEventListener("scroll", () => {
+let ticking = false;
+
+function updateAnimation() {
   const rect = cta.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
   let progress = 1 - rect.top / windowHeight;
-
-  // clamp between 0 → 1
   progress = Math.max(0, Math.min(progress, 1));
 
-  // movement range
-  const maxMove = 120; // matches your CSS start
-
+  const maxMove = 120;
   const move = maxMove * (1 - progress);
 
-  left.style.transform = `translateX(-${move}%)`;
-  right.style.transform = `translateX(${move}%)`;
+  left.style.transform = `translate3d(-${move}%, 0, 0)`;
+  right.style.transform = `translate3d(${move}%, 0, 0)`;
+
+  ticking = false;
+}
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(updateAnimation);
+    ticking = true;
+  }
 });
 
 

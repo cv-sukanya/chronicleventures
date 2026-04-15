@@ -515,7 +515,7 @@ window.addEventListener("load", () => {
 
   gsap.to(track, {
     y: -height,
-    duration: 12,
+    duration: 10,
     ease: "none",
     repeat: -1
   });

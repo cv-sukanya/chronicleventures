@@ -1814,13 +1814,13 @@ body {
 
 /* RIGHT → LEFT */
 .marquee-left .marquee-track {
-  animation: marqueeLeft 25s linear infinite;
+  animation: marqueeLeft 45s linear infinite;
   will-change: transform;
 }
 
 /* LEFT → RIGHT */
 .marquee-right .marquee-track {
-  animation: marqueeRight 25s linear infinite;
+  animation: marqueeRight 45s linear infinite;
   will-change: transform;
 }
 

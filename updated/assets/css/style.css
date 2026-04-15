@@ -596,13 +596,16 @@ body {
   left: 50%;
   /* width: 90px; old */
   width: 150px;
-  transform: translate(-50%, -50%) scale(0.3);
+  /* transform: translate(-50%, -50%) scale(0.3); */
   opacity: 0;
   z-index: 3;
   pointer-events: none;
   transition: transform 0.2s linear, opacity 0.3s ease;
   max-width: none;
 
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translate(-50%, -50%) translateZ(0);
 
 }
 
@@ -615,10 +618,10 @@ body {
   margin-top: 70px;
 }
 
-.about .center-star.animate {
+/* .about .center-star.animate {
   animation: starEntry 1.5s ease-out forwards,
     starGlow 2s ease-in-out 1.5s infinite;
-}
+} */
 
 /* old */
 /* @keyframes starEntry {
@@ -790,7 +793,7 @@ body {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .about .center-star {
-    width: 100px;
+    width: 250px;
     z-index: 5;
   }
 
@@ -2266,7 +2269,7 @@ body {
   /* right-side area */
   height: 100%;
   pointer-events: none;
-  z-index: 4;
+  z-index: 1;
 }
 
 /* Individual stones */

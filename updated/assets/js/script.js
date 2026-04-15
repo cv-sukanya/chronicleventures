@@ -187,9 +187,60 @@ window.addEventListener("scroll", () => {
 
 
 // About section
+// const about = document.querySelector(".about");
+// const star = document.querySelector(".center-star");
+// const content = document.querySelector(".content");
+
+// window.addEventListener("scroll", () => {
+//   requestAnimationFrame(() => {
+//     const rect = about.getBoundingClientRect();
+//     const windowHeight = window.innerHeight;
+
+//     let progress = 1.2 - rect.top / windowHeight;
+//     progress = Math.max(0, Math.min(progress, 1));
+
+//     const isMobile = window.innerWidth < 768;
+
+//     let scale;
+
+//     if (isMobile) {
+//       // ✅ FIX: use BASE width instead of offsetWidth
+//       const baseWidth = 100; // same as your CSS default
+//       const maxWidth = window.innerWidth * 0.85;
+
+//       const maxScale = maxWidth / baseWidth;
+
+//       // smooth controlled scaling
+//       scale = 0.5 + progress * maxScale;
+
+//       // clamp (extra safety)
+//       scale = Math.min(scale, maxScale);
+//     } else {
+//       scale = 0.5 + progress * 20;
+//     }
+
+//     // apply transform
+//     star.style.opacity = progress > 0.2 ? 1 : 0;
+//     star.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+//     // glow
+//     const glow = progress * (isMobile ? 20 : 40);
+//     star.style.filter = `drop-shadow(0 0 ${glow}px #a955f740)`;
+
+//     // content
+//     if (progress > 0.2) {
+//       content.classList.add("show");
+//     }
+//   });
+// });
+
+
+// new 
 const about = document.querySelector(".about");
 const star = document.querySelector(".center-star");
 const content = document.querySelector(".content");
+
+let hasEntered = false; // 👈 important
 
 window.addEventListener("scroll", () => {
   requestAnimationFrame(() => {
@@ -199,32 +250,37 @@ window.addEventListener("scroll", () => {
     let progress = 1.2 - rect.top / windowHeight;
     progress = Math.max(0, Math.min(progress, 1));
 
-    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth <= 1024;
 
     let scale;
 
-    if (isMobile) {
-      // ✅ FIX: use BASE width instead of offsetWidth
-      const baseWidth = 100; // same as your CSS default
+    if (isTablet) {
+      const baseWidth = 100;
       const maxWidth = window.innerWidth * 0.85;
-
       const maxScale = maxWidth / baseWidth;
 
-      // smooth controlled scaling
       scale = 0.5 + progress * maxScale;
-
-      // clamp (extra safety)
       scale = Math.min(scale, maxScale);
     } else {
       scale = 0.5 + progress * 20;
     }
 
-    // apply transform
-    star.style.opacity = progress > 0.2 ? 1 : 0;
+    // ✅ ENTRY LOCK (prevents disappearing)
+    if (progress > 0.2) {
+      hasEntered = true;
+    }
+
+    if (hasEntered) {
+      star.style.opacity = 1;
+    } else {
+      star.style.opacity = 0;
+    }
+
+    // ✅ transform (ONLY JS controls this now)
     star.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
-    // glow
-    const glow = progress * (isMobile ? 20 : 40);
+    // ✅ glow (smooth, no CSS animation)
+    const glow = progress * (isTablet ? 15 : 30);
     star.style.filter = `drop-shadow(0 0 ${glow}px #a955f740)`;
 
     // content
@@ -233,7 +289,6 @@ window.addEventListener("scroll", () => {
     }
   });
 });
-
 
 // explore section 
 const stones = document.querySelectorAll(".stone");

@@ -320,7 +320,7 @@ gsap.fromTo(".buzz-img",
       trigger: ".buzz-section",
       start: "top 100%",
       end: "top -70%",
-      scrub: true,
+      scrub: 1.5,
     }
   }
 );

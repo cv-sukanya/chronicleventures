@@ -235,12 +235,12 @@ window.addEventListener("scroll", () => {
 // });
 
 
-// new 
+// About Section New 
 const about = document.querySelector(".about");
 const star = document.querySelector(".center-star");
 const content = document.querySelector(".content");
 
-let hasEntered = false; // 👈 important
+let hasEntered = false;
 
 window.addEventListener("scroll", () => {
   requestAnimationFrame(() => {
@@ -251,16 +251,25 @@ window.addEventListener("scroll", () => {
     progress = Math.max(0, Math.min(progress, 1));
 
     const isTablet = window.innerWidth <= 1024;
+    const isLandscape = window.innerWidth > window.innerHeight;
 
     let scale;
 
     if (isTablet) {
       const baseWidth = 100;
-      const maxWidth = window.innerWidth * 0.85;
+
+      const maxWidth = window.innerHeight * 0.8; // ✅ FIX
       const maxScale = maxWidth / baseWidth;
 
       scale = 0.5 + progress * maxScale;
-      scale = Math.min(scale, maxScale);
+
+      if (isLandscape) {
+        scale *= 0.6; // ✅ FIX
+      }
+
+      const HARD_LIMIT = 6; // ✅ FIX
+      scale = Math.min(scale, maxScale, HARD_LIMIT);
+
     } else {
       scale = 0.5 + progress * 20;
     }
@@ -290,7 +299,9 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// explore section 
+
+
+// Explore Section 
 const stones = document.querySelectorAll(".stone");
 
 stones.forEach((stone, index) => {
@@ -562,19 +573,40 @@ gsap.fromTo(".why-us h2",
 );
 
 // why us content
-window.addEventListener("load", () => {
-  const track = document.querySelector(".wu-track");
-  const firstGroup = document.querySelector(".wu-group");
+const track = document.querySelector(".wu-track");
+const groups = document.querySelectorAll(".wu-group");
 
-  const height = firstGroup.getBoundingClientRect().height;
+function getHeight() {
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.gap) || 0;
 
-  gsap.to(track, {
-    y: -height,
-    duration: 10,
-    ease: "none",
-    repeat: -1
-  });
+  // ✅ precise height (includes sub-pixels)
+  const groupHeight = groups[0].getBoundingClientRect().height;
+
+  return groupHeight + gap;
+}
+
+let totalHeight = getHeight();
+gsap.ticker.lagSmoothing(0);
+gsap.to(track, {
+  y: () => -totalHeight,
+  duration: 15,
+  ease: "none",
+  repeat: -1,
+  modifiers: {
+    y: (y) => {
+      const value = parseFloat(y);
+      return (value % totalHeight) + "px";
+    }
+  }
 });
+
+// 🔥 SUPER IMPORTANT (fixes iPad + resize jump)
+window.addEventListener("resize", () => {
+  totalHeight = getHeight();
+});
+
+
 
 // static count 
 const counters = document.querySelectorAll('.counter');

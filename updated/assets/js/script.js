@@ -172,11 +172,7 @@ function updateAnimation() {
 
   progress = Math.max(0, Math.min(progress, 1));
 
-  const maxMove = window.innerWidth * 0.6;
-  const move = maxMove * (1 - progress);
-
-  left.style.transform = `translate3d(-${move}px,0,0)`;
-  right.style.transform = `translate3d(${move}px,0,0)`;
+  const maxMove = 120;
   const move = maxMove * (1 - progress);
 
   // ONLY transform (no layout thrashing)

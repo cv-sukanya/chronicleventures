@@ -83,7 +83,7 @@ let menuOpen = false;
 // OPEN MENU FUNCTION
 function openMenu() {
   gsap.to(sideMenu, {
-    y: 0,
+    x: 0,
     duration: 0.8,
     ease: "power4.out"
   });
@@ -96,7 +96,7 @@ function openMenu() {
 
   // stagger animation (NOW CORRECT)
   gsap.from(".side-menu ul li", {
-    y: 80,
+    x: -80,
     opacity: 0,
     stagger: 0.15,
     duration: 0.6,
@@ -104,26 +104,12 @@ function openMenu() {
   });
 
   menuOpen = true;
-
-  // astronaut floating
-  gsap.to(".astronaut", {
-    y: 30,
-    x: 20,
-    rotation: 5,
-    duration: 3,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
-  });
-
-  
-
 }
 
 // CLOSE MENU FUNCTION
 function closeMenu() {
   gsap.to(sideMenu, {
-    y: "100%",
+    x: "-100%",
     duration: 0.8,
     ease: "power4.in"
   });

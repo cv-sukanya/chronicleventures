@@ -151,54 +151,16 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  /* background: #000; */
+  background: #111;
   padding: 120px 50px;
   z-index: 999;
 
-  /* transform: translateX(-100%); */
-  overflow: hidden;
-}
-.space-scene {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  background: url("../images/moon_with_bg.png") no-repeat center bottom;
-  background-size: cover;
-
-}
-
-.space-scene .astronaut {
-  position: absolute;
-  top: 8%;
-  left: 5%;
-  width: clamp(140px, 18vw, 320px);
-  z-index: 3;
-  max-width: 280px;
-}
-.space-scene .rover {
-  position: absolute;
-  bottom: 20%;
-  right: 5%;
-  width: clamp(80px, 16vw, 250px);
-  z-index: 2;
+  transform: translateX(-100%);
 }
 
 /* menu text */
 .side-menu ul {
   list-style: none;
-  position: relative;
-  z-index: 5;
-
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2vw, 10px);
-
-  align-items: flex-start;
-  /* margin-left: 50%; */
-  /* margin-top: 100px; */
-   margin-top: clamp(60px, 10vh, 120px);
-  align-items: center;
 }
 
 .side-menu ul li {
@@ -206,20 +168,18 @@ body {
 }
 
 .side-menu ul li a {
-  font-size: clamp(28px, 5vw, 72px);
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-size: 4vw;
   font-family: var(--font-main);
   letter-spacing: 3px;
   display: inline-block;
   transition: 0.3s ease;
   text-decoration: none;
-  color: var(--bold-color);
+  color: #fff;
 }
 
 .side-menu ul li a:hover {
-  transform: translateY(5px);
-  color: #fff;
+  transform: translateX(10px);
+  color: var(--bold-color);
 }
 
 /* Optional overlay */
@@ -235,7 +195,6 @@ body {
   right: 30px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 5;
 }
 
 /* RESPONSIVE */
@@ -274,59 +233,6 @@ body {
   .content .about-text {
     font-size: 1rem;
   }
-
-  .side-menu {
-    padding: 80px 20px;
-  }
-
-  .side-menu ul {
-    margin-left: 20px;
-    margin-top: 60px;
-  }
-
-  .side-menu ul li a {
-    font-size: clamp(26px, 8vw, 48px);
-  }
-
-  /* astronaut reposition */
-  .astronaut {
-    top: 15%;
-    left: -10%;
-    width: 45vw;
-    opacity: 0.8; /* prevents overpowering */
-  }
-
-  /* rover smaller */
-  .rover {
-    bottom: 5%;
-    right: -5%;
-    width: 10vw;
-    opacity: 0.9;
-  }
-}
-/* Tablet / Ipad  */
-@media (max-width: 1024px) {
-
-  .side-menu {
-    padding: 100px 30px;
-  }
-
-  .side-menu ul {
-    /* margin-left: 40px; */
-    margin-top: 150px;
-  }
-
-  .astronaut {
-    top: 25%;
-    left: 0;
-    width: 25vw;
-  }
-
-  .rover {
-    bottom: 8%;
-    right: 2%;
-    width: 18vw;
-  }
 }
 
 
@@ -341,6 +247,8 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 60px;
+
+
 }
 
 /* Marquee fixed to bottom */
@@ -369,7 +277,7 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeMove 25s linear infinite;
+  animation: marqueeMove 13s linear infinite;
 }
 
 /* Text */
@@ -511,7 +419,7 @@ body {
   }
 
   .space-bg .obj1 {
-    top: 60%;
+    top: 45%;
     left: 10%;
     width: 60%;
   }
@@ -678,14 +586,7 @@ body {
   z-index: 99;
 } */
 
-.about .star-anchor {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-}
+
 .about .center-star {
   position: absolute;
   top: 50%;
@@ -693,8 +594,7 @@ body {
   /* width: 90px; old */
   width: 150px;
   /* transform: translate(-50%, -50%) scale(0.3); */
-  transform: translate(-50%, -50%) scale(1); /* base */
-
+  
   opacity: 0;
   z-index: 3;
   pointer-events: none;
@@ -708,7 +608,6 @@ body {
   backface-visibility: hidden;
   transform: translate(-50%, -50%) translateZ(0);
 
-  transform-origin: center center;
 }
 
 .about .content {
@@ -909,13 +808,13 @@ body {
   .content .about-text {
     max-width: 500px;
     margin: auto;
-    font-size: 60px;
+    font-size: 50px;
   }
 
   .about-text-green {
     max-width: 500px;
     margin: auto;
-    font-size: 60px;
+    font-size: 50px;
   }
 
   /* .about-text-purple {
@@ -1055,7 +954,7 @@ body {
   will-change: transform;
 }
 .buzz-img {
-  width: 120vw;
+  width: 140vw;
   max-width: none;
   will-change: transform;
   transform: translate3d(0, 0, 0);
@@ -1199,7 +1098,7 @@ body {
   .explore-text {
     margin: 200px 0;
     padding: 0 20px;
-    font-size: 6rem;
+    font-size: 5.5rem;
   }
 
   /* .white-star {

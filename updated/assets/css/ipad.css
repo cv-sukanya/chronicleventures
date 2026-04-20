@@ -1,8 +1,6 @@
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  
-  
 
-    /* Footer  */
+  /* Footer  */
   .fipad {
     display: block;
     position: relative;
@@ -19,188 +17,195 @@
     z-index: 5; */
 
     position: absolute;
-  inset: 0;          /* 🔥 best practice */
-  width: 100%;
-  height: 100%;      /* 🔥 FULL HEIGHT */
-  object-fit: cover;
-  z-index: 1;
+    inset: 0;
+    /* 🔥 best practice */
+    width: 100%;
+    height: 100%;
+    /* 🔥 FULL HEIGHT */
+    object-fit: cover;
+    z-index: 1;
 
 
-  /* 🔥 CONTROL CROP */
-  object-position: 30% center; 
+    /* 🔥 CONTROL CROP */
+    object-position: 30% center;
   }
 
   .fipad-content {
-  position: relative;
-  z-index: 4;
-  height: 100%;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.fipad-stones {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  /* right-side area */
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Individual stones */
-.fipad-stones img {
-  position: absolute;
-  max-width: 100%;
-}
-
-/* TOP stone (near ABOUT US / SERVICES) */
-.fistone1 {
-  position: absolute;
-  /* top: 600%; */
-  right: 10%;
-  width: 150px;
-  z-index: 1;
-  animation: float1 5s ease-in-out infinite;
-}
-
-/* MIDDLE stone (near privacy text) */
-.fstone2 {
-  position: absolute;
-  top: 95%;
-  right: 40%;
-  width: 250px;
-  z-index: 1;
-  animation: float2 6s ease-in-out infinite;
-}
-
-/* SMALL bottom stone (optional third one) */
-.fistone3 {
-  z-index: 1;
-  position: absolute;
-  bottom: -580%;
-  right: 50%;
-  width: 80px;
-  animation: float3 4s ease-in-out infinite;
-
-}
-
-@keyframes float1 {
-  0% {
-    transform: translate(0, 0);
+    position: relative;
+    z-index: 4;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
-  50% {
-    transform: translate(10px, -15px);
+  .fipad-stones {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    /* right-side area */
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
   }
 
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes float2 {
-  0% {
-    transform: translate(0, 0);
+  /* Individual stones */
+  .fipad-stones img {
+    position: absolute;
+    max-width: 100%;
   }
 
-  50% {
-    transform: translate(-15px, 10px);
+  /* TOP stone (near ABOUT US / SERVICES) */
+  .fistone1 {
+    position: absolute;
+    /* top: 600%; */
+    right: 10%;
+    width: 150px;
+    z-index: 1;
+    animation: float1 5s ease-in-out infinite;
   }
 
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes float3 {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  50% {
-    transform: translate(8px, 12px);
+  /* MIDDLE stone (near privacy text) */
+  .fstone2 {
+    position: absolute;
+    top: 95%;
+    right: 40%;
+    width: 250px;
+    z-index: 1;
+    animation: float2 6s ease-in-out infinite;
   }
 
-  100% {
-    transform: translate(0, 0);
+  /* SMALL bottom stone (optional third one) */
+  .fistone3 {
+    z-index: 1;
+    position: absolute;
+    bottom: -580%;
+    right: 50%;
+    width: 80px;
+    animation: float3 4s ease-in-out infinite;
+
   }
-}
+
+  @keyframes float1 {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    50% {
+      transform: translate(10px, -15px);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes float2 {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    50% {
+      transform: translate(-15px, 10px);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes float3 {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    50% {
+      transform: translate(8px, 12px);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
 
 
-/* Links */
-.fipad-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-}
+  /* Links */
+  .fipad-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
 
-/* Top nav */
-.footer-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
+  /* Top nav */
+  .footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-.footer-nav a {
-  text-decoration: none;
-  color: var(--bold-color);
-  font-size: 45px;
-}
-.footer-nav a:hover{
-  color: #fff;
-}
+  .footer-nav a {
+    text-decoration: none;
+    color: var(--bold-color);
+    font-size: 45px;
+  }
 
-.footer-nav span{
-  font-size: 30px;
-}
-/* Social icons */
-.fipad-socials {
-  display: flex;
-  gap: 20px;
-}
+  .footer-nav a:hover {
+    color: #fff;
+  }
 
-.fipad-socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 70px;
-  height: 70px;
-  background-color: #fff;
-  color: #000; /* icon color */
-  border-radius: 50%;
-  text-decoration: none;
-  font-size: 25px;
-  transition: all 0.3s ease;
-    
-}
+  .footer-nav span {
+    font-size: 30px;
+  }
 
-/* Bottom links */
-.footer-bottom-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  /* Social icons */
+  .fipad-socials {
+    display: flex;
+    gap: 20px;
+  }
 
-.footer-bottom-links a {
-  text-decoration: none;
-  color: var(--bold-color);
-  font-size: 30px;
-}
-.footer-bottom-links span{
-  font-size: 30px;
-}
-/* Copyright */
-.footer-copy {
-  font-size: 25px;
-  color: #f3f0f0;
-  margin: 0;
-}
+  .fipad-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    color: #000;
+    /* icon color */
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 25px;
+    transition: all 0.3s ease;
+
+  }
+
+  /* Bottom links */
+  .footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-bottom-links a {
+    text-decoration: none;
+    color: var(--bold-color);
+    font-size: 30px;
+  }
+
+  .footer-bottom-links span {
+    font-size: 30px;
+  }
+
+  /* Copyright */
+  .footer-copy {
+    font-size: 25px;
+    color: #f3f0f0;
+    margin: 0;
+  }
 
   /* Hide original footer */
   .footer {

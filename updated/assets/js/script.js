@@ -163,17 +163,25 @@ const right = document.querySelector(".right");
 let ticking = false;
 
 function updateAnimation() {
-  const rect = cta.getBoundingClientRect();
+  const rectTop = cta.offsetTop;
+  const scrollY = window.scrollY;
   const windowHeight = window.innerHeight;
 
-  let progress = 1 - rect.top / windowHeight;
+  // progress based on scroll position (cheaper than getBoundingClientRect)
+  let progress = (scrollY + windowHeight - rectTop) / windowHeight;
+
   progress = Math.max(0, Math.min(progress, 1));
 
-  const maxMove = 120;
+  const maxMove = window.innerWidth * 0.6;
   const move = maxMove * (1 - progress);
 
-  left.style.transform = `translate3d(-${move}%, 0, 0)`;
-  right.style.transform = `translate3d(${move}%, 0, 0)`;
+  left.style.transform = `translate3d(-${move}px,0,0)`;
+  right.style.transform = `translate3d(${move}px,0,0)`;
+  const move = maxMove * (1 - progress);
+
+  // ONLY transform (no layout thrashing)
+  left.style.transform = `translate3d(-${move}%,0,0)`;
+  right.style.transform = `translate3d(${move}%,0,0)`;
 
   ticking = false;
 }
@@ -384,9 +392,10 @@ gsap.fromTo(".buzz-img",
     ease: "none",
     scrollTrigger: {
       trigger: ".buzz-section",
-      start: "top 100%",
+      start: "top 120%",
       end: "top -70%",
-      scrub: 1.5,
+      scrub: 1.2,
+      anticipatePin: 1,
     }
   }
 );
@@ -590,7 +599,7 @@ let totalHeight = getHeight();
 gsap.ticker.lagSmoothing(0);
 gsap.to(track, {
   y: () => -totalHeight,
-  duration: 15,
+  duration: 14,
   ease: "none",
   repeat: -1,
   modifiers: {

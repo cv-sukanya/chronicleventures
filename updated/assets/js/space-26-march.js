@@ -3,8 +3,13 @@ window.addEventListener("load", () => {
 });
 
 const canvas = document.getElementById("space-canvas");
-
 const scene = new THREE.Scene();
+
+const isMobile = window.innerWidth < 768;
+
+/* =========================
+   🎥 CAMERA
+========================= */
 
 const camera = new THREE.PerspectiveCamera(
   65,
@@ -13,7 +18,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.z = 6;
+camera.position.z = isMobile ? 7 : 6;
 
 /* =========================
    🎥 RENDERER
@@ -41,12 +46,10 @@ const starTexture = loader.load(
 );
 
 /* =========================
-   🌌 GALAXY (BACKGROUND)
+   🌌 GALAXY
 ========================= */
 
-const isMobile = window.innerWidth < 768;
 const starCount = isMobile ? 2500 : 6000;
-
 const positions = new Float32Array(starCount * 3);
 
 for (let i = 0; i < starCount; i++) {
@@ -72,7 +75,7 @@ galaxyGeo.setAttribute(
 );
 
 const galaxyMat = new THREE.PointsMaterial({
-  size: isMobile ? 0.085: 0.08,
+  size: isMobile ? 0.085 : 0.08,
   opacity: 0.6,
   map: starTexture,
   transparent: true,
@@ -82,32 +85,30 @@ const galaxyMat = new THREE.PointsMaterial({
 
 const galaxy = new THREE.Points(galaxyGeo, galaxyMat);
 scene.add(galaxy);
-  
+
 /* =========================
    🛸 UFO
 ========================= */
 
-const ufoTexture = loader.load("assets/images/ufo.png");
+const ufoTexture = loader.load("assets/images/ufo.webp");
 
 const ufoMaterial = new THREE.SpriteMaterial({
   map: ufoTexture,
   transparent: true,
   depthWrite: false,
-  
 });
 
 const ufo = new THREE.Sprite(ufoMaterial);
 
-// ufo.position.set(2, 1, -2);
-// ufo.scale.set(2.5, 1.2, 1.5); //(width, height, depth);
+const baseX = isMobile ? 0.8 : 2;
+const baseY = isMobile ? 0.5 : 1;
+const baseZ = isMobile ? -1 : -2;
 
-if (isMobile) {
-  ufo.position.set(0.8, 0.5, -1.5);
-  ufo.scale.set(1.8, 0.9, 1);
-} else {
-  ufo.position.set(2, 1, -2);
-  ufo.scale.set(2.5, 1.2, 1);
-}
+ufo.position.set(baseX, baseY, baseZ);
+ufo.scale.set(isMobile ? 1.8 : 2.5, isMobile ? 0.9 : 1.2, 1);
+
+ufo.renderOrder = 999;
+ufo.material.depthTest = false;
 
 scene.add(ufo);
 
@@ -129,11 +130,10 @@ const glowMaterial = new THREE.SpriteMaterial({
 
 const glow = new THREE.Sprite(glowMaterial);
 
-if (isMobile) {
-  glow.scale.set(2, 2, 1);
-} else {
-  glow.scale.set(3, 3, 1);
-}
+glow.scale.set(isMobile ? 2 : 3, isMobile ? 2 : 3, 1);
+
+glow.renderOrder = 998;
+glow.material.depthTest = false;
 
 scene.add(glow);
 
@@ -178,17 +178,15 @@ function createShootingStar() {
 setInterval(createShootingStar, 1200);
 
 /* =========================
-   ✨ PNG SPARK STARS
+   ✨ SPARKLES
 ========================= */
 
-const star1 = loader.load("assets/images/small_star.png");
-const star2 = loader.load("assets/images/big_star.png");
+const star1 = loader.load("assets/images/small_star.webp");
+const star2 = loader.load("assets/images/big_star.webp");
 
 const sparkleGroup = new THREE.Group();
 
-const sparkleCount = 15;
-
-for (let i = 0; i < sparkleCount; i++) {
+for (let i = 0; i < 15; i++) {
   const texture = Math.random() > 0.5 ? star1 : star2;
 
   const material = new THREE.SpriteMaterial({
@@ -220,7 +218,7 @@ for (let i = 0; i < sparkleCount; i++) {
 scene.add(sparkleGroup);
 
 /* =========================
-   🖱️ MOUSE PARALLAX
+   🖱️ MOUSE
 ========================= */
 
 let mouseX = 0;
@@ -236,9 +234,15 @@ document.addEventListener("mousemove", (e) => {
 ========================= */
 
 let scrollY = 0;
+let scrollProgress = 0;
 
 window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
+
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  scrollProgress = scrollY / maxScroll;
 });
 
 /* =========================
@@ -248,37 +252,74 @@ window.addEventListener("scroll", () => {
 function animate() {
   requestAnimationFrame(animate);
 
-  // galaxy rotation
+  const time = Date.now() * 0.001;
+
   galaxy.rotation.y += 0.0008;
 
-  // UFO motion
-  ufo.position.y = 1 + Math.sin(Date.now() * 0.0015) * 0.3;
-  ufo.position.x = 2 + Math.sin(Date.now() * 0.0008) * 0.5;
-  ufo.material.rotation = Math.sin(Date.now() * 0.001) * 0.05;
+  /* 🛸 SCROLL LEFT-RIGHT */
+  const scrollX = (scrollProgress - 0.5) * (isMobile ? 2 : 4);
+  ufo.position.x += (baseX + scrollX - ufo.position.x) * 0.08;
 
-  // glow follow
-  glow.position.x = ufo.position.x;
-  glow.position.y = ufo.position.y - 0.5;
+  /* 🛸 FLOAT Y */
+  ufo.position.y =
+    baseY +
+    Math.sin(time * 1.2) * 0.3 +
+    Math.cos(time * 0.5) * 0.2;
 
-  // sparkle stars
+  /* 🛸 SCALE BASED ON Y (DEPTH EFFECT) */
+  const minY = baseY - 0.5;
+  const maxY = baseY + 0.5;
+
+  const yProgress = (ufo.position.y - minY) / (maxY - minY);
+
+  // 🎯 scale based ONLY on scroll
+const minScale = isMobile ? 1.6 : 2.2;
+const maxScale = isMobile ? 2.4 : 3.2;
+
+// map scroll (0 → 1) to scale
+const targetScale =
+  minScale + (maxScale - minScale) * scrollProgress;
+
+// smooth easing
+ufo.scale.x += (targetScale - ufo.scale.x) * 0.08;
+ufo.scale.y += (targetScale * 0.5 - ufo.scale.y) * 0.08;
+
+  /* ✨ ROTATION */
+  ufo.material.rotation = Math.sin(time * 0.8) * 0.08;
+
+  /* ✨ GLOW FOLLOW + SCALE */
+  glow.position.x += (ufo.position.x - glow.position.x) * 0.1;
+  glow.position.y += (ufo.position.y - 0.5 - glow.position.y) * 0.1;
+
+  glow.scale.x += (targetScale * 1.2 - glow.scale.x) * 0.1;
+  glow.scale.y += (targetScale * 1.2 - glow.scale.y) * 0.1;
+
+  /* ✨ SPARKLES */
   sparkleGroup.children.forEach((star, i) => {
-    const time = Date.now() * 0.002 + i;
+    const t = Date.now() * 0.002 + i;
 
-    const scale = 0.8 + Math.sin(time * star.userData.speed * 50) * 0.5;
+    const scale = 0.8 + Math.sin(t * star.userData.speed * 50) * 0.5;
     star.scale.set(scale, scale, 1);
 
-    star.material.opacity = 0.6 + Math.sin(time * 2) * 0.4;
+    star.material.opacity = 0.6 + Math.sin(t * 2) * 0.4;
   });
 
-  // shooting stars
+  /* 🌠 SHOOTING STARS */
   shootingStars.forEach((s) => {
     s.position.add(s.velocity);
   });
 
-  // camera movement
+  /* 🎥 CAMERA */
+  const scrollFactor = isMobile ? 0.0015 : 0.003;
+  const minZ = isMobile ? 5.5 : 4.5;
+
+  camera.position.z = Math.max(
+    (isMobile ? 7 : 6) - scrollY * scrollFactor,
+    minZ
+  );
+
   camera.position.x += (mouseX * 2 - camera.position.x) * 0.04;
   camera.position.y += (-mouseY * 2 - camera.position.y) * 0.04;
-  camera.position.z = 6 - scrollY * 0.003;
 
   camera.lookAt(scene.position);
 
@@ -292,9 +333,13 @@ animate();
 ========================= */
 
 window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  renderer.setSize(width, height);
 });
 
 /* =========================

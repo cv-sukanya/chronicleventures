@@ -247,8 +247,6 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 60px;
-
-
 }
 
 /* Marquee fixed to bottom */
@@ -277,7 +275,7 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeMove 13s linear infinite;
+  animation: marqueeMove 25s linear infinite;
 }
 
 /* Text */
@@ -419,7 +417,7 @@ body {
   }
 
   .space-bg .obj1 {
-    top: 45%;
+    top: 50%;
     left: 10%;
     width: 60%;
   }
@@ -586,7 +584,14 @@ body {
   z-index: 99;
 } */
 
-
+.about .star-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+}
 .about .center-star {
   position: absolute;
   top: 50%;
@@ -594,6 +599,8 @@ body {
   /* width: 90px; old */
   width: 150px;
   /* transform: translate(-50%, -50%) scale(0.3); */
+  transform: translate(-50%, -50%) scale(1); /* base */
+
   opacity: 0;
   z-index: 3;
   pointer-events: none;
@@ -607,6 +614,7 @@ body {
   backface-visibility: hidden;
   transform: translate(-50%, -50%) translateZ(0);
 
+  transform-origin: center center;
 }
 
 .about .content {
@@ -807,13 +815,13 @@ body {
   .content .about-text {
     max-width: 500px;
     margin: auto;
-    font-size: 50px;
+    font-size: 60px;
   }
 
   .about-text-green {
     max-width: 500px;
     margin: auto;
-    font-size: 50px;
+    font-size: 60px;
   }
 
   /* .about-text-purple {
@@ -953,7 +961,7 @@ body {
   will-change: transform;
 }
 .buzz-img {
-  width: 140vw;
+  width: 120vw;
   max-width: none;
   will-change: transform;
   transform: translate3d(0, 0, 0);

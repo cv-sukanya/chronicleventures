@@ -157,6 +157,8 @@ body {
 
   /* transform: translateX(-100%); */
   overflow: hidden;
+  transform: translateY(100%);
+  /* visibility: hidden; */
 }
 .space-scene {
   position: absolute;

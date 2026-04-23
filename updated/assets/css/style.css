@@ -931,7 +931,7 @@ body {
 .explore {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(#9043CC, #b143cc, #963692);
+  background: linear-gradient(#9243cc, #b143cc, #963692);
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2688,3 +2688,210 @@ body {
 .fipad {
   display: none;
 }
+
+
+/* Video menu */
+/* MAIN MENU */
+.space-video-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* opacity: 0;
+  visibility: hidden; */
+  /* transition: 0.7s ease; */
+
+  /* Hidden State */
+  transform: translateY(100%);
+  opacity: 1;
+  visibility: hidden;
+
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1),
+              visibility 0.8s;
+}
+
+/* OPEN */
+.space-video-menu.active {
+  opacity: 1;
+  transform: translateY(0%);
+  visibility: visible;
+}
+
+/* VIDEO WRAPPER */
+.space-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* VIDEO */
+.menu-video-bg {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+
+  min-width: 100%;
+  min-height: 100%; */
+
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.menu-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Default Hide */
+.tablet-video,
+.mobile-video {
+  display: none;
+}
+/* OVERLAY */
+.space-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(1px);
+}
+
+/* MENU LINKS */
+.space-menu-links {
+  position: relative;
+  z-index: 5;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.space-menu-links li {
+  margin: 25px 0;
+}
+
+.space-menu-links a {
+  color: #00ff2a;
+  text-decoration: none;
+  font-size: 5vw;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-style: italic;
+  transition: 0.3s ease;
+}
+
+.space-menu-links a:hover {
+  transform: scale(1.08);
+  opacity: 0.8;
+}
+
+/* CLOSE BUTTON */
+.space-menu-close {
+  position: absolute;
+  top: 35px;
+  right: 45px;
+  color: white;
+  font-size: 45px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+
+
+
+/* LANDSCAPE VIDEO */
+@media (min-aspect-ratio: 16/9) {
+  .menu-video-bg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* PORTRAIT VIDEO */
+@media (max-aspect-ratio: 16/9) {
+  .menu-video-bg {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .space-menu-links a {
+    font-size: 12vw;
+  }
+
+  .menu-astronaut {
+    width: 120px;
+    left: 2%;
+    top: 18%;
+  }
+
+  .menu-satellite {
+    width: 120px;
+    right: 2%;
+    bottom: 20%;
+  }
+
+  .space-menu-close {
+    top: 25px;
+    right: 25px;
+    font-size: 35px;
+  }
+}
+
+
+/* DESKTOP */
+@media (min-width: 1025px) {
+  .desktop-video {
+    display: block;
+  }
+
+  .tablet-video,
+  .mobile-video {
+    display: none;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .tablet-video {
+    display: block;
+  }
+
+  .desktop-video,
+  .mobile-video {
+    display: none;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .mobile-video {
+    display: block;
+  }
+
+  .desktop-video,
+  .tablet-video {
+    display: none;
+  }
+}

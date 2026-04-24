@@ -115,56 +115,72 @@ function openMenu() {
     yoyo: true,
     ease: "sine.inOut"
   });
-
-  
-
 }
 
 // CLOSE MENU FUNCTION
-function closeMenu() {
-  gsap.to(sideMenu, {
-    y: "100%",
-    duration: 0.8,
-    ease: "power4.in"
-  });
+// function closeMenu() {
+//   gsap.to(sideMenu, {
+//     y: "100%",
+//     duration: 0.8,
+//     ease: "power4.in"
+//   });
 
-  gsap.to(overlay, {
-    opacity: 0,
-    pointerEvents: "none",
-    duration: 0.5
-  });
+//   gsap.to(overlay, {
+//     opacity: 0,
+//     pointerEvents: "none",
+//     duration: 0.5
+//   });
 
-  menuOpen = false;
-}
+//   menuOpen = false;
+// }
 
-// MENU BUTTON CLICK
-menuBtn.addEventListener("click", () => {
-  menuOpen ? closeMenu() : openMenu();
+// // MENU BUTTON CLICK
+// menuBtn.addEventListener("click", () => {
+//   menuOpen ? closeMenu() : openMenu();
+// });
+
+// // OVERLAY CLICK
+// overlay.addEventListener("click", closeMenu);
+
+// // CLOSE BUTTON (SAFE CHECK)
+// const closeBtn = document.querySelector(".close-btn");
+
+// if (closeBtn) {
+//   closeBtn.addEventListener("click", closeMenu);
+// }
+// // CLOSE MENU ON LINK CLICK
+// document.querySelectorAll(".side-menu a").forEach(link => {
+//   link.addEventListener("click", function (e) {
+//     e.preventDefault();
+
+//     const targetSection = document.querySelector(this.getAttribute("href"));
+
+//     closeMenu();
+
+//     setTimeout(() => {
+//       targetSection.scrollIntoView({
+//         behavior: "smooth"
+//       });
+//     }, 400);
+//   });
+// });
+
+
+// Video Menu
+const spaceMenu = document.querySelector(".space-video-menu");
+const closeSpaceMenu = document.querySelector(".space-menu-close");
+
+document.querySelector(".menu-btn").addEventListener("click", () => {
+  spaceMenu.classList.add("active");
 });
 
-// OVERLAY CLICK
-overlay.addEventListener("click", closeMenu);
+closeSpaceMenu.addEventListener("click", () => {
+  spaceMenu.classList.remove("active");
+});
 
-// CLOSE BUTTON (SAFE CHECK)
-const closeBtn = document.querySelector(".close-btn");
-
-if (closeBtn) {
-  closeBtn.addEventListener("click", closeMenu);
-}
-// CLOSE MENU ON LINK CLICK
-document.querySelectorAll(".side-menu a").forEach(link => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const targetSection = document.querySelector(this.getAttribute("href"));
-
-    closeMenu();
-
-    setTimeout(() => {
-      targetSection.scrollIntoView({
-        behavior: "smooth"
-      });
-    }, 400);
+document.querySelectorAll(".space-menu-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    spaceMenu.classList.remove("active");
   });
 });
 

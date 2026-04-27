@@ -234,7 +234,7 @@ body {
 .earth-layer-mob {
   display: none;
   width: 120vw;
-  bottom: -10%;
+  bottom: -20%;
 }
 /* TABLET */
 @media (max-width: 1024px) {
@@ -421,7 +421,7 @@ body {
 @media (max-width: 1024px) {
 
   .side-menu {
-    padding: 100px 30px;
+    padding: 120px 30px;
   }
 
   .side-menu ul {

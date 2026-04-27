@@ -216,7 +216,7 @@ body {
 /* ===== DESKTOP ===== */
 .earth-layer {
   display: block;
-  width: 95vw;
+  width: 100vw;
   bottom: -8%;
 }
 
@@ -225,7 +225,7 @@ body {
   display: none;
 
   width: 100vw;
-  bottom: -40%;
+  bottom: -20%;
 
   left: 50%;
 }
@@ -234,7 +234,7 @@ body {
 .earth-layer-mob {
   display: none;
   width: 120vw;
-  bottom: -20%;
+  bottom: -10%;
 }
 /* TABLET */
 @media (max-width: 1024px) {
@@ -263,7 +263,7 @@ body {
   } */
 }
 
-@media (max-width: 467px){
+@media (max-width: 468px){
   .earth-layer,
   .earth-layer-tab{
     display: none;
@@ -347,7 +347,7 @@ body {
 
   .side-menu ul {
     margin-top: 100px;
-    gap: 10px;
+    gap: 2px;
   }
 
   .side-menu ul li a {
@@ -391,7 +391,7 @@ body {
   }
 
   .side-menu ul {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-top: 60px;
   }
 

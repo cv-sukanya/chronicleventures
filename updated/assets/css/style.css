@@ -234,7 +234,7 @@ body {
 .earth-layer-mob {
   display: none;
   width: 120vw;
-  bottom: -10%;
+  bottom: -40%;
 }
 /* TABLET */
 @media (max-width: 1024px) {

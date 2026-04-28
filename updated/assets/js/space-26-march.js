@@ -90,7 +90,7 @@ scene.add(galaxy);
   UFO
 ========================= */
 
-const ufoTexture = loader.load("assets/images/ufo.webp");
+const ufoTexture = loader.load("https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777375110/ufo_s1h152.webp");
 
 const ufoMaterial = new THREE.SpriteMaterial({
   map: ufoTexture,

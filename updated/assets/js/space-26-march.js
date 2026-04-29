@@ -181,8 +181,8 @@ setInterval(createShootingStar, 1200);
    ✨ SPARKLES
 ========================= */
 
-const star1 = loader.load("assets/images/small_star.webp");
-const star2 = loader.load("assets/images/big_star.webp");
+const star1 = loader.load("https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777455928/small_star_giktwg.webp");
+const star2 = loader.load("https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777455928/big_star_t1kmbh.webp");
 
 const sparkleGroup = new THREE.Group();
 

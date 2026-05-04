@@ -186,40 +186,66 @@ document.querySelectorAll(".side-menu a").forEach(link => {
 
 
 // one line
-const cta = document.querySelector(".cta-line");
-const left = document.querySelector(".left");
-const right = document.querySelector(".right");
+document.addEventListener("DOMContentLoaded", () => {
 
-let ticking = false;
-let rectTop = cta.offsetTop; // calculate once
+  const cta = document.querySelector(".cta-line");
+  const left = document.querySelector(".left");
+  const right = document.querySelector(".right");
 
-function updateAnimation() {
-  const scrollY = window.scrollY;
-  const windowHeight = window.innerHeight;
+  // ❌ stop if elements not found (prevents crash)
+  if (!cta || !left || !right) return;
 
-  // progress based on scroll position (cheaper than getBoundingClientRect)
-  let progress = (scrollY + windowHeight - rectTop) / windowHeight;
-  progress = Math.max(0, Math.min(progress, 1));
+  let ticking = false;
+  let rectTop = 0;
+  let isMobile = window.innerWidth < 768;
+  let isVisible = false;
 
-  const maxMove = 200;
-  const move = maxMove * (1 - progress);
+  // safe observer
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.length > 0) {
+      isVisible = entries[0].isIntersecting;
+    }
+  });
 
-  // ONLY transform (no layout thrashing)
-  left.style.transform = `translate3d(-${move}px,0,0)`;
-  right.style.transform = `translate3d(${move}px,0,0)`;
+  observer.observe(cta);
 
-  ticking = false;
-}
-
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    requestAnimationFrame(updateAnimation);
-    ticking = true;
+  function updateMeasurements() {
+    rectTop = cta.offsetTop;
+    isMobile = window.innerWidth < 768;
   }
-});
-// recalc on resize/orientation change (important for iPad)
-window.addEventListener("resize", () => {
-  rectTop = cta.offsetTop;
+
+  updateMeasurements();
+
+  function updateAnimation() {
+    if (!isVisible) {
+      ticking = false;
+      return;
+    }
+
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    let progress = (scrollY + windowHeight - rectTop) / windowHeight;
+    progress = Math.max(0, Math.min(progress, 1));
+
+    const maxMove = isMobile ? 80 : 160;
+    const move = maxMove * (1 - progress);
+
+    left.style.transform = `translate3d(-${move}px,0,0)`;
+    right.style.transform = `translate3d(${move}px,0,0)`;
+
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateAnimation);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener("resize", updateMeasurements);
+
 });
 
 

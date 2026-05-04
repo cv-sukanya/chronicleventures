@@ -659,6 +659,7 @@ body {
 
   /* will-change: transform;
   transform: translateZ(0); */
+  contain: layout paint;
 }
 
 .cta-line h2 {
@@ -670,6 +671,7 @@ body {
   /* overflow: hidden; */
 
   justify-content: center;
+  text-rendering: optimizeSpeed;
 }
 
 .cta-line h2:hover {

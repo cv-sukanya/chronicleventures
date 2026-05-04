@@ -191,23 +191,22 @@ const left = document.querySelector(".left");
 const right = document.querySelector(".right");
 
 let ticking = false;
+let rectTop = cta.offsetTop; // calculate once
 
 function updateAnimation() {
-  const rectTop = cta.offsetTop;
   const scrollY = window.scrollY;
   const windowHeight = window.innerHeight;
 
   // progress based on scroll position (cheaper than getBoundingClientRect)
   let progress = (scrollY + windowHeight - rectTop) / windowHeight;
-
   progress = Math.max(0, Math.min(progress, 1));
 
-  const maxMove = 120;
+  const maxMove = 200;
   const move = maxMove * (1 - progress);
 
   // ONLY transform (no layout thrashing)
-  left.style.transform = `translate3d(-${move}%,0,0)`;
-  right.style.transform = `translate3d(${move}%,0,0)`;
+  left.style.transform = `translate3d(-${move}px,0,0)`;
+  right.style.transform = `translate3d(${move}px,0,0)`;
 
   ticking = false;
 }
@@ -217,6 +216,10 @@ window.addEventListener("scroll", () => {
     requestAnimationFrame(updateAnimation);
     ticking = true;
   }
+});
+// recalc on resize/orientation change (important for iPad)
+window.addEventListener("resize", () => {
+  rectTop = cta.offsetTop;
 });
 
 

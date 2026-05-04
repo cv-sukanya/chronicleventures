@@ -657,8 +657,8 @@ body {
   position: relative;
   z-index: 5;
 
-  will-change: transform;
-  transform: translateZ(0);
+  /* will-change: transform;
+  transform: translateZ(0); */
 }
 
 .cta-line h2 {

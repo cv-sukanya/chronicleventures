@@ -676,6 +676,13 @@ body {
   color: var(--second-color);
 }
 
+.cta-line h2:hover .left {
+  transform: translateX(-10px);
+}
+
+.cta-line h2:hover .right {
+  transform: translateX(10px);
+}
 /* initial state */
 
 

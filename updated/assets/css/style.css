@@ -2034,106 +2034,72 @@ body {
 }
 
 .client-list {
-  width: 100%;
-  /* overflow: hidden; */
-  margin-top: 100px;
-  position: relative;
-  /* position: static; */
-
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: 40px;
+  overflow: hidden;
 }
-
-.client-list::before,
-.client-list::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.client-list::before {
-  left: 0;
-  background: linear-gradient(to right, #000, transparent);
-}
-
-.client-list::after {
-  right: 0;
-  background: linear-gradient(to left, #000, transparent);
-}
-
-/* MARQUEE STRUCTURE */
-.client-list .marquee {
-  display: flex;
+.client-list .marquee{
   width: 100%;
   overflow: hidden;
-
-  background: rgba(255, 255, 255, 0.05);
-  padding: 40px 0;
-
   position: relative;
 }
-
-.client-list .marquee .marquee-track {
+.client-list .track {
   display: flex;
-  align-items: center;
-  gap: clamp(40px, 6vw, 120px);
+  /* width: 100%; */
   width: max-content;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
 }
-
-/* LOGOS */
-.client-list .marquee .marquee-track img {
-  height: clamp(30px, 3.5vw, 80px);
+.client-list .track img {
   width: auto;
-  object-fit: contain;
-  opacity: 0.9;
-  transition: 0.3s ease;
-
-  display: block;
+  height: 100%;
+  flex-shrink: 0;
+}
+.track.left {
+  animation: moveLeft 55s linear infinite;
 }
 
-.client-list .marquee .marquee-track img:hover {
-  opacity: 1;
-  transform: scale(1.1);
+.track.right {
+  animation: moveRight 55s linear infinite;
 }
-
-/* RIGHT → LEFT */
-.marquee-left .marquee-track {
-  animation: marqueeLeft 45s linear infinite;
-  will-change: transform;
-}
-
-/* LEFT → RIGHT */
-.marquee-right .marquee-track {
-  animation: marqueeRight 45s linear infinite;
-  will-change: transform;
-}
-
-/* KEYFRAMES */
-@keyframes marqueeLeft {
-  0% {
+@keyframes moveLeft {
+  from {
     transform: translateX(0);
   }
-
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
 
-@keyframes marqueeRight {
-  0% {
+@keyframes moveRight {
+  from {
     transform: translateX(-50%);
   }
-
-  100% {
+  to {
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .client-list .marquee .track img {
+    height: 100px;
+  }
+
+  .track.left,
+  .track.right {
+    animation-duration: 45s; /* faster on mobile */
+  }
+}
+
+/* large screen */
+@media (min-width: 1440px) {
+  .client-list .marquee .track img {
+    height: 140px;
+  }
+
+  .track.left,
+  .track.right {
+    animation-duration: 55s; /* slower = premium feel */
   }
 }
 
@@ -2148,6 +2114,8 @@ body {
     left: 20%;
   }
 }
+
+
 
 /* stats section */
 .stats-section {

@@ -217,3 +217,24 @@
   }
 
 }
+
+
+/* iPad Portrait + Landscape */
+@media only screen and (min-width: 768px) and (max-width: 1366px) {
+
+  .side-menu ul {
+    margin-top: 850px;
+    gap: 12px;
+  }
+
+  .side-menu ul li {
+    margin-bottom: 18px;
+    
+  }
+
+  .side-menu ul li a {
+    font-size: clamp(32px, 25vw, 48px);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+}

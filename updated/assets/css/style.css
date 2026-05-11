@@ -663,7 +663,7 @@ body {
 }
 
 .cta-line h2 {
-  font-size: clamp(30px, 10vw, 110px);
+  font-size: clamp(30px, 5vw, 110px);
   color: var(--bold-color);
   display: flex;
   letter-spacing: 5px;

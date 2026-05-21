@@ -663,15 +663,16 @@ body {
 }
 
 .cta-line h2 {
-  font-size: clamp(30px, 5vw, 110px);
+  font-size: clamp(30px, 6vw, 110px);
   color: var(--bold-color);
   display: flex;
   letter-spacing: 5px;
-  gap: 30px;
+  gap: 20px;
   /* overflow: hidden; */
 
   justify-content: center;
   text-rendering: optimizeSpeed;
+  align-items: center;
 }
 
 .cta-line h2:hover {
@@ -684,6 +685,15 @@ body {
 
 .cta-line h2:hover .right {
   transform: translateX(10px);
+}
+
+.cta-line h2 .center{
+  position: relative;
+  z-index: 2;
+  color: var(--second-color);
+}
+.cta-line h2:hover .center{
+  color: var(--bold-color);
 }
 /* initial state */
 

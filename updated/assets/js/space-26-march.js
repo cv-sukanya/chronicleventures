@@ -195,6 +195,7 @@ for (let i = 0; i < 15; i++) {
     blending: THREE.AdditiveBlending,
     color: 0xcc66ff,
     depthWrite: false,
+    opacity: 0.25,
   });
 
   const sprite = new THREE.Sprite(material);
@@ -205,7 +206,7 @@ for (let i = 0; i < 15; i++) {
     Math.random() * 5
   );
 
-  const scale = Math.random() * 1.5 + 0.5;
+  const scale = Math.random() * 0.7 + 0.2;
   sprite.scale.set(scale, scale, 1);
 
   sprite.userData = {
@@ -273,16 +274,16 @@ function animate() {
   const yProgress = (ufo.position.y - minY) / (maxY - minY);
 
   // 🎯 scale based ONLY on scroll
-const minScale = isMobile ? 1.6 : 2.2;
-const maxScale = isMobile ? 2.4 : 3.2;
+  const minScale = isMobile ? 1.6 : 2.2;
+  const maxScale = isMobile ? 2.4 : 3.2;
 
-// map scroll (0 → 1) to scale
-const targetScale =
-  minScale + (maxScale - minScale) * scrollProgress;
+  // map scroll (0 → 1) to scale
+  const targetScale =
+    minScale + (maxScale - minScale) * scrollProgress;
 
-// smooth easing
-ufo.scale.x += (targetScale - ufo.scale.x) * 0.08;
-ufo.scale.y += (targetScale * 0.5 - ufo.scale.y) * 0.08;
+  // smooth easing
+  ufo.scale.x += (targetScale - ufo.scale.x) * 0.08;
+  ufo.scale.y += (targetScale * 0.5 - ufo.scale.y) * 0.08;
 
   /* ✨ ROTATION */
   ufo.material.rotation = Math.sin(time * 0.8) * 0.08;
@@ -298,10 +299,10 @@ ufo.scale.y += (targetScale * 0.5 - ufo.scale.y) * 0.08;
   sparkleGroup.children.forEach((star, i) => {
     const t = Date.now() * 0.002 + i;
 
-    const scale = 0.8 + Math.sin(t * star.userData.speed * 50) * 0.5;
+    const scale = 0.2 + Math.sin(t * star.userData.speed * 50) * 0.5;
     star.scale.set(scale, scale, 1);
 
-    star.material.opacity = 0.6 + Math.sin(t * 2) * 0.4;
+    star.material.opacity = 0.15 + Math.sin(t * 2) * 0.12;
   });
 
   /* 🌠 SHOOTING STARS */

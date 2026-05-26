@@ -187,7 +187,7 @@ const star2 = loader.load("https://res.cloudinary.com/dgrqhkw0w/image/upload/v17
 const sparkleGroup = new THREE.Group();
 
 for (let i = 0; i < 15; i++) {
-  const texture = Math.random() > 0.5 ? star1 : star2;
+  const texture = Math.random() > 0.7 ? star1 : star2;
 
   const material = new THREE.SpriteMaterial({
     map: texture,
@@ -206,11 +206,11 @@ for (let i = 0; i < 15; i++) {
     Math.random() * 5
   );
 
-  const scale = Math.random() * 0.7 + 0.2;
+  const scale = Math.random() * 0.9 + 0.4;
   sprite.scale.set(scale, scale, 1);
 
   sprite.userData = {
-    speed: Math.random() * 0.02 + 0.01,
+    speed: Math.random() * 0.05 + 0.04,
   };
 
   sparkleGroup.add(sprite);

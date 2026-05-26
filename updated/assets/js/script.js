@@ -672,43 +672,50 @@ window.addEventListener("resize", () => {
 
 
 
-// static count 
 const counters = document.querySelectorAll('.counter');
-
-const speed = 50; // lower = faster
+const speed = 50;
 
 const startCounting = (counter) => {
-  const target = +counter.getAttribute('data-target');
+  const targetAttr = counter.getAttribute('data-target');
+
+  // Check if value contains M
+  const isMillion = targetAttr.includes('M');
+  const numericTarget = parseFloat(targetAttr);
+
   let count = 0;
 
   const update = () => {
-    const increment = target / speed;
+    const increment = numericTarget / speed;
 
-    if (count < target) {
+    if (count < numericTarget) {
       count += increment;
-      counter.innerText = Math.ceil(count) + "+";
+
+      if (isMillion) {
+        counter.innerText = Math.ceil(count) + "M+";
+      } else {
+        counter.innerText = Math.ceil(count) + "+";
+      }
+
       requestAnimationFrame(update);
     } else {
-      counter.innerText = target + "+";
+      counter.innerText = targetAttr + "+";
     }
   };
 
   update();
 };
 
-/* 👀 Trigger when visible */
+// Trigger when visible
 const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       startCounting(entry.target);
-      obs.unobserve(entry.target); // run once
+      obs.unobserve(entry.target);
     }
   });
 }, { threshold: 0.5 });
 
 counters.forEach(counter => observer.observe(counter));
-
-
 
 // ask question section
 gsap.registerPlugin(ScrollTrigger);

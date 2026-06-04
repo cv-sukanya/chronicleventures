@@ -636,7 +636,7 @@ gsap.fromTo(".why-us h2",
   }
 );
 
-// why us content
+// Why Us content
 const track = document.querySelector(".wu-track");
 const groups = document.querySelectorAll(".wu-group");
 
@@ -644,17 +644,21 @@ function getHeight() {
   const style = getComputedStyle(track);
   const gap = parseFloat(style.gap) || 0;
 
-  // ✅ precise height (includes sub-pixels)
+  // precise height (includes sub-pixels)
   const groupHeight = groups[0].getBoundingClientRect().height;
 
   return groupHeight + gap;
 }
 
 let totalHeight = getHeight();
+
+// Different speed for - mobile : desktop
+const duration = window.innerWidth <= 768 ? 25 : 14;
+
 gsap.ticker.lagSmoothing(0);
 gsap.to(track, {
   y: () => -totalHeight,
-  duration: 14,
+  duration: duration,
   ease: "none",
   repeat: -1,
   modifiers: {
@@ -671,7 +675,7 @@ window.addEventListener("resize", () => {
 });
 
 
-
+// Stats section
 const counters = document.querySelectorAll('.counter');
 const speed = 50;
 
@@ -716,6 +720,7 @@ const observer = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.5 });
 
 counters.forEach(counter => observer.observe(counter));
+
 
 // ask question section
 gsap.registerPlugin(ScrollTrigger);
@@ -815,4 +820,18 @@ document.querySelectorAll(".footer a[href^='#']").forEach(link => {
       block: "start"
     });
   });
+});
+
+
+
+window.addEventListener("scroll", () => {
+  const btn = document.querySelector(".back-to-top");
+
+  if (window.scrollY > 500) {
+    btn.style.opacity = "1";
+    btn.style.visibility = "visible";
+  } else {
+    btn.style.opacity = "0";
+    btn.style.visibility = "hidden";
+  }
 });

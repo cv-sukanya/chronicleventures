@@ -2174,7 +2174,7 @@ body {
 
 /* TEXT */
 .stat-card h3 {
-  font-size: clamp(85px, 3vw, 32px);
+  font-size: clamp(70px, 3vw, 32px);
   font-weight: 700;
   /* margin-bottom: 8px; */
   color: var(--bold-color);
@@ -2203,7 +2203,7 @@ body {
   background: rgba(255, 255, 255, 0.05);
   padding: 18px 20px;
   border-radius: 12px;
-  font-size: clamp(42px, 6vw, 58px);
+  font-size: clamp(30px, 6vw, 58px);
   font-weight: 500;
   letter-spacing: 2px;
   text-align: center;
@@ -2765,7 +2765,9 @@ body {
 
   /* Links centered */
   .footer-links a {
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
     text-align: center;
   }
 
@@ -2790,6 +2792,7 @@ body {
   .footer-mob {
     text-align: center;
     display: block;
+    padding: 5px 0;
   }
 
   .footer-mob a {
@@ -2808,7 +2811,7 @@ body {
     display: flex;
     justify-content: flex-end;
     margin-top: -35px; /* adjust as needed */
-    padding-right: 25px;
+    padding-right: 10px;
   }
 
   .back-to-top-mob {
@@ -2823,7 +2826,7 @@ body {
     color: var(--bold-color) !important;
     font-size: 20px;
     margin: 0 !important;
-    box-shadow: 0 0 10px var(--bold-color);
+    box-shadow: 0 0 5px var(--bold-color);
   }
 
 }
@@ -2989,7 +2992,7 @@ body {
   text-decoration: none;
   z-index: 9999;
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px var(--bold-color);
+  box-shadow: 0 0 10px var(--bold-color);
 }
 
 .back-to-top:hover {

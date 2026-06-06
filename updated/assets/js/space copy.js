@@ -31,16 +31,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(
-  Math.min(
-    window.devicePixelRatio,
-    isMobile ? 1 : 1.5
-  )
-);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-const clock = new THREE.Clock();
 
 /* =========================
    🌌 TEXTURES
@@ -56,7 +49,7 @@ const starTexture = loader.load(
    🌌 GALAXY
 ========================= */
 
-const starCount = isMobile ? 1200 : 6000;
+const starCount = isMobile ? 2500 : 6000;
 const positions = new Float32Array(starCount * 3);
 
 for (let i = 0; i < starCount; i++) {
@@ -182,10 +175,7 @@ function createShootingStar() {
   setTimeout(() => scene.remove(line), 1500);
 }
 
-setInterval(
-  createShootingStar,
-  isMobile ? 2500 : 1200
-);
+setInterval(createShootingStar, 1200);
 
 /* =========================
    ✨ SPARKLES
@@ -247,26 +237,14 @@ document.addEventListener("mousemove", (e) => {
 let scrollY = 0;
 let scrollProgress = 0;
 
-let targetUfoX = baseX;
+window.addEventListener("scroll", () => {
+  scrollY = window.scrollY;
 
-window.addEventListener(
-  "scroll",
-  () => {
-    scrollY = window.scrollY;
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
 
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-    scrollProgress = scrollY / maxScroll;
-
-    targetUfoX =
-      baseX +
-      (scrollProgress - 0.5) *
-        (isMobile ? 2 : 4);
-  },
-  { passive: true }
-);
+  scrollProgress = scrollY / maxScroll;
+});
 
 /* =========================
    🎥 ANIMATION
@@ -275,19 +253,13 @@ window.addEventListener(
 function animate() {
   requestAnimationFrame(animate);
 
-  const delta = clock.getDelta();
-  const time = clock.elapsedTime;
+  const time = Date.now() * 0.001;
 
   galaxy.rotation.y += 0.0008;
 
   /* 🛸 SCROLL LEFT-RIGHT */
-  const smoothFactor = isMobile
-  ? Math.min(delta * 12, 1)
-  : Math.min(delta * 8, 1);
-
-ufo.position.x +=
-  (targetUfoX - ufo.position.x) *
-  smoothFactor;
+  const scrollX = (scrollProgress - 0.5) * (isMobile ? 2 : 4);
+  ufo.position.x += (baseX + scrollX - ufo.position.x) * 0.08;
 
   /* 🛸 FLOAT Y */
   ufo.position.y =

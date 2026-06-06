@@ -31,16 +31,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(
-  Math.min(
-    window.devicePixelRatio,
-    isMobile ? 1 : 1.5
-  )
-);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-const clock = new THREE.Clock();
 
 /* =========================
    🌌 TEXTURES
@@ -56,7 +49,7 @@ const starTexture = loader.load(
    🌌 GALAXY
 ========================= */
 
-const starCount = isMobile ? 1200 : 6000;
+const starCount = isMobile ? 2500 : 6000;
 const positions = new Float32Array(starCount * 3);
 
 for (let i = 0; i < starCount; i++) {
@@ -182,10 +175,7 @@ function createShootingStar() {
   setTimeout(() => scene.remove(line), 1500);
 }
 
-setInterval(
-  createShootingStar,
-  isMobile ? 2500 : 1200
-);
+setInterval(createShootingStar, 1200);
 
 /* =========================
    ✨ SPARKLES
@@ -244,30 +234,10 @@ document.addEventListener("mousemove", (e) => {
    ⚡ SCROLL
 ========================= */
 
-let scrollY = 0;
-let scrollProgress = 0;
 
-let targetUfoX = baseX;
 
-window.addEventListener(
-  "scroll",
-  () => {
-    scrollY = window.scrollY;
-
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-    scrollProgress = scrollY / maxScroll;
-
-    targetUfoX =
-      baseX +
-      (scrollProgress - 0.5) *
-        (isMobile ? 2 : 4);
-  },
-  { passive: true }
-);
-
+let currentScrollProgress = 0;
+let currentScrollY = 0;
 /* =========================
    🎥 ANIMATION
 ========================= */
@@ -275,19 +245,33 @@ window.addEventListener(
 function animate() {
   requestAnimationFrame(animate);
 
-  const delta = clock.getDelta();
-  const time = clock.elapsedTime;
+  const time = Date.now() * 0.001;
+
+  /* 📜 GET SCROLL EVERY FRAME */
+
+  const actualScrollY = window.scrollY;
+
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const targetScrollProgress =
+    maxScroll > 0 ? actualScrollY / maxScroll : 0;
+
+  /* Smooth interpolation */
+  currentScrollY += (actualScrollY - currentScrollY) * 0.08;
+
+  currentScrollProgress +=
+    (targetScrollProgress - currentScrollProgress) * 0.08;
 
   galaxy.rotation.y += 0.0008;
 
   /* 🛸 SCROLL LEFT-RIGHT */
-  const smoothFactor = isMobile
-  ? Math.min(delta * 12, 1)
-  : Math.min(delta * 8, 1);
+  const scrollX =
+  (currentScrollProgress - 0.5) * (isMobile ? 2 : 4);
 
 ufo.position.x +=
-  (targetUfoX - ufo.position.x) *
-  smoothFactor;
+  (baseX + scrollX - ufo.position.x) *
+  (isMobile ? 0.15 : 0.08);
 
   /* 🛸 FLOAT Y */
   ufo.position.y =
@@ -307,7 +291,8 @@ ufo.position.x +=
 
   // map scroll (0 → 1) to scale
   const targetScale =
-    minScale + (maxScale - minScale) * scrollProgress;
+  minScale +
+  (maxScale - minScale) * currentScrollProgress;
 
   // smooth easing
   ufo.scale.x += (targetScale - ufo.scale.x) * 0.08;
@@ -342,10 +327,11 @@ ufo.position.x +=
   const scrollFactor = isMobile ? 0.0015 : 0.003;
   const minZ = isMobile ? 5.5 : 4.5;
 
-  camera.position.z = Math.max(
-    (isMobile ? 7 : 6) - scrollY * scrollFactor,
-    minZ
-  );
+ camera.position.z = Math.max(
+  (isMobile ? 7 : 6) -
+    currentScrollY * scrollFactor,
+  minZ
+);
 
   camera.position.x += (mouseX * 2 - camera.position.x) * 0.04;
   camera.position.y += (-mouseY * 2 - camera.position.y) * 0.04;

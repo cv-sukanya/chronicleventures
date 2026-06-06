@@ -891,41 +891,45 @@ window.addEventListener("scroll", () => {
 //   .addEventListener("click", closeModal);
 
 
-const contactBtns = document.querySelectorAll(".contactBtn");
-const contactModal = document.querySelector(".contact-modal");
-const closeContact = document.querySelector(".close-contact");
+document.addEventListener("DOMContentLoaded", () => {
 
-contactBtns.forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
+  const contactBtns = document.querySelectorAll(".contactBtn");
+  const contactModal = document.querySelector(".contact-modal");
+  const closeContact = document.querySelector(".close-contact");
+  const overlay = document.querySelector(".contact-overlay");
 
-    contactModal.style.display = "flex";
+  if (!contactModal) return;
 
-    gsap.to(".contact-container", {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power4.out"
+  contactBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      contactModal.style.display = "flex";
+
+      gsap.to(".contact-container", {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power4.out"
+      });
     });
   });
+
+  function closeModal() {
+    gsap.to(".contact-container", {
+      scale: 0.8,
+      opacity: 0,
+      y: 100,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        contactModal.style.display = "none";
+      }
+    });
+  }
+
+  closeContact?.addEventListener("click", closeModal);
+  overlay?.addEventListener("click", closeModal);
+
 });
-function closeModal() {
-
-  gsap.to(".contact-container", {
-    scale: 0.8,
-    opacity: 0,
-    y: 100,
-    duration: 0.5,
-    ease: "power3.in",
-    onComplete: () => {
-      contactModal.style.display = "none";
-    }
-  });
-}
-
-closeContact.addEventListener("click", closeModal);
-
-document
-  .querySelector(".contact-overlay")
-  .addEventListener("click", closeModal);

@@ -20,6 +20,8 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.z = isMobile ? 7 : 6;
 
+camera.lookAt(scene.position);
+
 /* =========================
    🎥 RENDERER
 ========================= */
@@ -31,7 +33,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -49,7 +51,7 @@ const starTexture = loader.load(
    🌌 GALAXY
 ========================= */
 
-const starCount = isMobile ? 2500 : 6000;
+const starCount = isMobile ? 1000 : 6000;
 const positions = new Float32Array(starCount * 3);
 
 for (let i = 0; i < starCount; i++) {
@@ -175,7 +177,7 @@ function createShootingStar() {
   setTimeout(() => scene.remove(line), 1500);
 }
 
-setInterval(createShootingStar, 1200);
+// setInterval(createShootingStar, 1200);
 
 /* =========================
    ✨ SPARKLES
@@ -234,10 +236,22 @@ document.addEventListener("mousemove", (e) => {
    ⚡ SCROLL
 ========================= */
 
+let targetScrollProgress = 0;
+let smoothScrollProgress = 0;
 
-
-let currentScrollProgress = 0;
 let currentScrollY = 0;
+
+window.addEventListener(
+  "scroll",
+  () => {
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    targetScrollProgress =
+      maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  },
+  { passive: true }
+);
 /* =========================
    🎥 ANIMATION
 ========================= */
@@ -249,29 +263,23 @@ function animate() {
 
   /* 📜 GET SCROLL EVERY FRAME */
 
-  const actualScrollY = window.scrollY;
+currentScrollY +=
+  (window.scrollY - currentScrollY) * 0.08;
 
-  const maxScroll =
-    document.documentElement.scrollHeight - window.innerHeight;
-
-  const targetScrollProgress =
-    maxScroll > 0 ? actualScrollY / maxScroll : 0;
-
-  /* Smooth interpolation */
-  currentScrollY += (actualScrollY - currentScrollY) * 0.08;
-
-  currentScrollProgress +=
-    (targetScrollProgress - currentScrollProgress) * 0.08;
+smoothScrollProgress +=
+  (targetScrollProgress - smoothScrollProgress) *
+  (isMobile ? 0.025 : 0.08);
 
   galaxy.rotation.y += 0.0008;
 
   /* 🛸 SCROLL LEFT-RIGHT */
-  const scrollX =
-  (currentScrollProgress - 0.5) * (isMobile ? 2 : 4);
+const scrollX =
+  (smoothScrollProgress - 0.5) *
+  (isMobile ? 2 : 4);
 
 ufo.position.x +=
   (baseX + scrollX - ufo.position.x) *
-  (isMobile ? 0.15 : 0.08);
+  (isMobile ? 0.06 : 0.08);
 
   /* 🛸 FLOAT Y */
   ufo.position.y =
@@ -292,7 +300,7 @@ ufo.position.x +=
   // map scroll (0 → 1) to scale
   const targetScale =
   minScale +
-  (maxScale - minScale) * currentScrollProgress;
+  (maxScale - minScale) * smoothScrollProgress;
 
   // smooth easing
   ufo.scale.x += (targetScale - ufo.scale.x) * 0.08;
@@ -336,7 +344,6 @@ ufo.position.x +=
   camera.position.x += (mouseX * 2 - camera.position.x) * 0.04;
   camera.position.y += (-mouseY * 2 - camera.position.y) * 0.04;
 
-  camera.lookAt(scene.position);
 
   renderer.render(scene, camera);
 }

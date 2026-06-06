@@ -145,151 +145,206 @@ body {
 
 
 /* SIDE MENU */
-.side-menu{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100dvh;
+.side-menu {
+  /* background: url("../images/star-video.mp4"); */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* padding: 120px 50px; */
+  z-index: 999;
 
-    overflow:hidden;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    z-index:9999;
-
-    transform:translateY(100%);
+  /* transform: translateX(-100%); */
+  overflow: hidden;
+  transform: translateY(100%);
+  inset: 0;
+  /* visibility: hidden; */
+}
+.menu-content {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
-.menu-bg-video{
-    position:absolute;
-    inset:0;
+.space-scene {
+  /* position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("../images/earth-desktop.png") no-repeat center bottom;
+  perspective: 1500px;
+  background-size: cover;
+  overflow: hidden; */
 
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: #000;
 }
 
-.video-dark-overlay{
-    position:absolute;
-    inset:0;
+.menu-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-    background:rgba(0,0,0,.25);
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+
+  z-index: 0;
 }
 
-.earth-layer{
-    position:absolute;
-
-    left:50%;
-    bottom:-20%;
-
-    transform:translateX(-50%);
-
-    width:min(1600px,190vw);
-
-    pointer-events:none;
-
-    
+/* DARK OVERLAY */
+.video-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
 }
 
-.menu-content{
-    position:relative;
-    z-index:10;
-
-    transform: translateY(10px);
+/* EARTH PNG */
+/* ===== COMMON EARTH STYLE ===== */
+.earth-layer,
+.earth-layer-tab,
+.earth-layer-mob {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  max-width: none;
 }
 
-.menu-content ul{
-    margin:0;
-    padding:0;
-    list-style:none;
-
-    display:flex;
-    flex-direction:column;
-    gap:1.2rem;
-
-    text-align:center;
+/* ===== DESKTOP ===== */
+.earth-layer {
+  display: block;
+  width: 100vw;
+  bottom: -8%;
 }
 
-.menu-content a{
-    text-decoration:none;
+/* ===== TABLET ===== */
+.earth-layer-tab {
+  display: none;
 
-    color:#19ff00;
+  width: 100vw;
+  bottom: -20%;
 
-    font-size:clamp(3rem,4vw,6rem);
+  left: 50%;
+}
 
-    font-weight:900;
+/* ===== MOBILE ===== */
+.earth-layer-mob {
+  display: none;
+  width: 120vw;
+  bottom: -40%;
+}
 
-    line-height:1;
+/* TABLET */
+@media (max-width: 1024px) {
 
-    transition:.3s;
-    letter-spacing: 3px;
+  .earth-layer {
+    display: none;
+  }
+
+  .earth-layer-tab {
+    display: block;
+  }
+
+  .earth-layer-mob {
+    display: none;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .earth-layer {
+    display: none;
+  }
+
+  /* .earth-layer-mob {
+    display: block;
+  } */
+}
+
+@media (max-width: 468px) {
+
+  .earth-layer,
+  .earth-layer-tab {
+    display: none;
+  }
+
+  .earth-layer-mob {
+    display: block;
+  }
+}
+
+/* menu text */
+.side-menu ul {
+  list-style: none;
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2vw, 10px);
+
+  align-items: flex-start;
+  /* margin-left: 50%; */
+  /* margin-top: 50px;
+  margin-top: clamp(60px, 10vh, 120px); */
+  align-items: center;
+}
+
+.side-menu ul li {
+  margin-bottom: 30px;
+}
+
+.side-menu ul li a {
+  font-size: clamp(28px, 5vw, 72px);
+  font-weight: 600;
+  letter-spacing: 3px;
+  font-family: var(--font-main);
+  letter-spacing: 3px;
+  display: inline-block;
+  transition: 0.3s ease;
+  text-decoration: none;
+  color: var(--bold-color);
+  text-align: center;
+}
+
+.side-menu ul li a:hover {
+  transform: translateY(5px);
+  color: #fff;
+}
+
+/* Optional overlay */
+.menu-overlay {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
 
 }
 
-.menu-content a:hover{
-    transform: translateY(5px);
-    color: #fff;
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 5;
 }
 
-.close-btn{
-    position:absolute;
-
-    top:30px;
-    right:30px;
-
-    z-index:20;
-
-    color:#fff;
-
-    font-size:3rem;
-
-    cursor:pointer;
-}
-
-/* Tablet  */
-@media (max-width:1024px){
-
-    .earth-layer{
-        width:190vw;
-        bottom:1%;
-    }
-
-    .menu-content a{
-        font-size:clamp(3rem,7vw,5rem);
-    }
-
-}
-@media (max-width:768px){
-
-     .earth-layer{
-        width:170vw;
-        bottom:0%;
-    }
-
-    .menu-content{
-        transform:translateY(20%);
-        
-        
-    }
-    
-    .menu-content a{
-        font-size:clamp(2rem,8vw,3.5rem);
-        letter-spacing: 2px;
-        gap: 2rem;
-    }
-
-    .close-btn{
-        top:20px;
-        right:20px;
-        font-size:2.2rem;
-    }
-
-}
-
-
+/* @media (min-width: 1500px){
+  .side-menu ul{
+    margin-top: 20px;
+  }
+} */
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-left {
@@ -388,7 +443,7 @@ body {
 
   .side-menu ul {
     /* margin-left: 40px; */
-    margin-top: 300px;
+    margin-top: 15px;
   }
 
   .astronaut {

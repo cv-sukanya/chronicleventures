@@ -58,7 +58,7 @@
       </a>
     </div>
     <div class="nav-right">
-      <button><a href="#">Contact Us</a></button>
+      <button><a href="#" id="contactBtn">Contact Us</a></button>
     </div>
   </nav>
   <!-- SIDE MENU OLD -->
@@ -103,8 +103,61 @@
       <li><a href="#why-us">Why Us</a></li>
 
       <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" id="contactBtn">Contact</a></li>
     </ul>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="contact-modal">
+    <div class="contact-overlay"></div>
+
+    <div class="contact-container">
+      <button class="close-contact">✕</button>
+
+      <div class="contact-left">
+        <h2>Let's Build Something Extraordinary.</h2>
+        <p>
+          Tell us about your project, campaign, event, or brand challenge.
+        </p>
+      </div>
+
+      <div class="contact-right">
+        <form action="contact.php" method="POST">
+          <div class="field">
+            <input type="text" name="name" placeholder="Your Name" required />
+          </div>
+
+          <div class="field">
+            <input type="email" name="email" placeholder="Email Address"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required />
+          </div>
+
+          <div class="field">
+            <input type="tel" name="phone" placeholder="Phone Number" pattern="[6-9]{1}[0-9]{9}" maxlength="10"
+              title="Please enter a valid 10-digit mobile number" required />
+          </div>
+
+          <!-- <div class="field">
+          <select>
+            <option>Select Service</option>
+            <option>Branding</option>
+            <option>Digital Marketing</option>
+            <option>Events</option>
+            <option>Web Development</option>
+            <option>Creative Production</option>
+          </select>
+        </div> -->
+
+          <div class="field">
+            <textarea rows="5" name="message" placeholder="Tell us about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- HERO SECTION -->
@@ -333,7 +386,8 @@
 
       <div class="service right">
         <div class="inner">
-          <img src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1780738137/events-and-experimental-marketing_sf1ads.png"
+          <img
+            src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1780738137/events-and-experimental-marketing_sf1ads.png"
             class="astro" alt="Events & Experimental Marketing" />
           <div class="content">Events & Experimental Marketing</div>
         </div>
@@ -498,7 +552,7 @@
       <div class="footer-links">
         <a href="#why-us">ABOUT US</a>
         <a href="#services">SERVICES</a>
-        <a href="#contact">CONTACT US</a>
+        <a href="#contact" id="contactBtn">CONTACT US</a>
 
         <!-- Social Icons -->
         <div class="socials">
@@ -546,12 +600,12 @@
     <p>All Rights Reserved.</p>
 
     <!-- Move to top button -->
-     <div class="top-mob">
+    <div class="top-mob">
       <a href="#home" class="back-to-top-mob">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-     </div>
-    
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+
   </div>
 
   <!-- footer ipad -->
@@ -570,7 +624,7 @@
           <span>|</span>
           <a href="#services">SERVICES</a>
           <span>|</span>
-          <a href="#contact">CONTACT US</a>
+          <a href="#contact" id="contactBtn">CONTACT US</a>
         </div>
 
         <!-- Social Icons -->
@@ -599,7 +653,9 @@
     </div>
   </div>
 
-  
+
+
+
   <!-- Javascript -->
   <script src="assets/js/script.js" defer></script>
   <script src="assets/js/space.js" defer></script>

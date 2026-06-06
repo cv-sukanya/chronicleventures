@@ -835,3 +835,57 @@ window.addEventListener("scroll", () => {
     btn.style.visibility = "hidden";
   }
 });
+
+
+
+// Contact form
+const contactBtn = document.getElementById("contactBtn");
+const contactModal = document.querySelector(".contact-modal");
+const closeContact = document.querySelector(".close-contact");
+
+gsap.set(".contact-container", {
+  scale: 0.8,
+  opacity: 0,
+  y: 100
+});
+
+contactBtn.addEventListener("click", () => {
+
+  contactModal.style.display = "flex";
+
+  gsap.to(".contact-container", {
+    scale: 1,
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power4.out"
+  });
+
+  gsap.from(".field", {
+    y: 40,
+    opacity: 0,
+    stagger: 0.08,
+    delay: 0.2,
+    duration: 0.6
+  });
+});
+
+function closeModal() {
+
+  gsap.to(".contact-container", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+    ease: "power3.in",
+    onComplete: () => {
+      contactModal.style.display = "none";
+    }
+  });
+}
+
+closeContact.addEventListener("click", closeModal);
+
+document
+  .querySelector(".contact-overlay")
+  .addEventListener("click", closeModal);

@@ -349,9 +349,7 @@ window.addEventListener("scroll", () => {
     }
 
     // ✅ transform (ONLY JS controls this now)
-    // star.style.transform = `translate(-50%, -50%) scale(${scale})`;
-    star.style.transform =
-      `translate3d(-50%, -50%, 0) scale(${scale})`;
+    star.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
     // ✅ glow (smooth, no CSS animation)
     const glow = progress * (isTablet ? 15 : 30);

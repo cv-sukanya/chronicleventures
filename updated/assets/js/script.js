@@ -149,19 +149,48 @@ if (closeBtn) {
   closeBtn.addEventListener("click", closeMenu);
 }
 // CLOSE MENU ON LINK CLICK
+
+// old code 
+// document.querySelectorAll(".side-menu a").forEach(link => {
+//   link.addEventListener("click", function (e) {
+//     e.preventDefault();
+
+//     const targetSection = document.querySelector(this.getAttribute("href"));
+
+//     closeMenu();
+
+//     setTimeout(() => {
+//       targetSection.scrollIntoView({
+//         behavior: "smooth"
+//       });
+//     }, 400);
+//   });
+// });
+
+// new code 
 document.querySelectorAll(".side-menu a").forEach(link => {
   link.addEventListener("click", function (e) {
-    e.preventDefault();
 
-    const targetSection = document.querySelector(this.getAttribute("href"));
+    const href = this.getAttribute("href");
 
-    closeMenu();
+    if (
+      href.startsWith("#") &&
+      !href.includes("index.html")
+    ) {
+      e.preventDefault();
 
-    setTimeout(() => {
-      targetSection.scrollIntoView({
-        behavior: "smooth"
-      });
-    }, 400);
+      const target = document.querySelector(href);
+
+      if (target) {
+        closeMenu();
+
+        setTimeout(() => {
+          target.scrollIntoView({
+            behavior: "smooth"
+          });
+        }, 400);
+      }
+    }
   });
 });
 

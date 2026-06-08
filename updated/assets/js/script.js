@@ -825,19 +825,46 @@ document.querySelectorAll(".footer a[href^='#']").forEach(link => {
 });
 
 
+// Back to top button
+// Back to top buttons
+document.querySelectorAll(".back-to-top, .back-to-top-mob").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-window.addEventListener("scroll", () => {
-  const btn = document.querySelector(".back-to-top");
-
-  if (window.scrollY > 500) {
-    btn.style.opacity = "1";
-    btn.style.visibility = "visible";
-  } else {
-    btn.style.opacity = "0";
-    btn.style.visibility = "hidden";
-  }
+    document.querySelector("#home").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
 });
 
+// Show/Hide button
+window.addEventListener("scroll", () => {
+  const desktopBtn = document.querySelector(".back-to-top");
+  const mobileBtn = document.querySelector(".back-to-top-mob");
+
+  if (window.scrollY > 500) {
+    if (desktopBtn) {
+      desktopBtn.style.opacity = "1";
+      desktopBtn.style.visibility = "visible";
+    }
+
+    if (mobileBtn) {
+      mobileBtn.style.opacity = "1";
+      mobileBtn.style.visibility = "visible";
+    }
+  } else {
+    if (desktopBtn) {
+      desktopBtn.style.opacity = "0";
+      desktopBtn.style.visibility = "hidden";
+    }
+
+    if (mobileBtn) {
+      mobileBtn.style.opacity = "0";
+      mobileBtn.style.visibility = "hidden";
+    }
+  }
+});
 
 
 // Contact form

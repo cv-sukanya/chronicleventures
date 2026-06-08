@@ -68,7 +68,7 @@
 
   <canvas id="space-canvas"></canvas>
   <!-- NAVBAR -->
-  <nav class="navbar">
+  <nav class="navbar" id="privacy">
     <div class="nav-left menu-btn">MENU</div>
     <div class="nav-center">
       <a href="index.html">
@@ -82,48 +82,31 @@
   </nav>
   <!-- SIDE MENU OLD -->
   <div class="side-menu">
+
     <div class="close-btn">✕</div>
 
-    <div class="space-scene">
-      <!-- VIDEO BACKGROUND -->
-      <video class="menu-bg-video" autoplay muted loop playsinline preload="metadata">
-        <source src="https://res.cloudinary.com/dgrqhkw0w/video/upload/v1777285527/star-video_p4yn8b.mp4"
-          type="video/mp4" />
-      </video>
+    <!-- background video -->
+    <video class="menu-bg-video" autoplay muted loop playsinline>
+      <source src="https://res.cloudinary.com/dgrqhkw0w/video/upload/v1777285527/star-video_p4yn8b.mp4"
+        type="video/mp4">
+    </video>
 
-      <!-- Overlay -->
-      <div class="video-dark-overlay"></div>
+    <div class="video-dark-overlay"></div>
 
-      <img src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777456181/earth-desktop_tmxfmc.png"
-        class="earth-layer" alt="Earth" />
+    <!-- earth -->
+    <img src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777456181/earth-desktop_tmxfmc.png" alt="Earth"
+      class="earth-layer">
 
-      <!-- <video
-          class="earth-layer"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        >
-          <source
-            src="https://res.cloudinary.com/dgrqhkw0w/video/upload/v1777358898/earth_cdezqb.webm"
-            type="video/mp4"
-          />
-        </video> -->
-
-      <img src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777456181/earth-tab_v5nfvy.png"
-        class="earth-layer-tab" alt="Earth" />
-
-      <img src="https://res.cloudinary.com/dgrqhkw0w/image/upload/v1777456180/earth-mob_vrtyly.png"
-        class="earth-layer-mob" alt="Earth" />
+    <!-- menu -->
+    <div class="menu-content">
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#why-us">WHY US</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#" class="contactBtn">CONTACT</a></li>
+      </ul>
     </div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#why-us">Why Us</a></li>
 
-      <li><a href="#services">Services</a></li>
-      <li><a href="#" class="contactBtn">Contact</a></li>
-    </ul>
   </div>
 
   <!-- Contact Modal -->
@@ -444,7 +427,7 @@
     </div>
 
     <!-- Move to top button -->
-    <a href="#home" class="back-to-top">
+    <a href="#privacy" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </footer>
@@ -457,7 +440,7 @@
 
     <!-- Move to top button -->
     <div class="top-mob">
-      <a href="#home" class="back-to-top-mob">
+      <a href="#privacy" class="back-to-top-mob">
         <i class="fas fa-arrow-up"></i>
       </a>
     </div>
@@ -561,6 +544,19 @@
 
 });
   </script>
+
+  <script>
+  document.querySelectorAll('.back-to-top, .back-to-top-mob').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
 </body>
 
 </html>
